@@ -1,0 +1,47 @@
+Database
+	- Book
+		- id_book
+		- title
+		- date_publication
+		- number_pages
+		- fk_author
+		- fk_editor
+		- fk_category
+	- DVD
+		- id_dvd
+		- title
+		- release_date
+		- duration
+		- fk_author
+		- fk_editor
+		- fk_category
+
+
+		--> Il peut y avoir plus de médias (cd, newspaper, ...)
+
+
+	- Author 			--> personne morale ou physique (faire gaffe aux attributs que nous allons créer)
+	- Editor 			--> personne morale ou physique (faire gaffe aux attributs que nous allons créer)
+
+
+	- Category
+		- id_category
+		- name_category
+	- User
+		- id_user
+		- firstname
+		- lastname
+		- address
+		- email
+		- password
+		- fk_role
+	- Role
+		- id_role
+		- name_role
+	- Loan
+		- id_loan
+		- start_date
+		- end_date
+		- fk_book			--> peut être crée une autre table car si nous rajoutons un média il faudra alors rajouter une "fk" à chaque fois dans cette table
+		- fk_dvd			--> de plus, lors d'un emprunt, au minimum une colonne "fk" sera vide, je pense qu'il y a moyen de faire autrement 
+		- fk_user	 
