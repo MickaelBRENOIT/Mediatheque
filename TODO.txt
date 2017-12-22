@@ -4,6 +4,7 @@ Database
 		- title
 		- date_publication
 		- number_pages
+		- quantity
 		- fk_author
 		- fk_editor
 		- fk_category
@@ -12,6 +13,7 @@ Database
 		- title
 		- release_date
 		- duration
+		- quantity
 		- fk_author
 		- fk_editor
 		- fk_category
@@ -20,8 +22,34 @@ Database
 		--> Il peut y avoir plus de médias (cd, newspaper, ...)
 
 
-	- Author 			--> personne morale ou physique (faire gaffe aux attributs que nous allons créer)
-	- Editor 			--> personne morale ou physique (faire gaffe aux attributs que nous allons créer)
+	- Author 					--> personne morale ou physique (faire gaffe aux attributs que nous allons créer)
+	(- Author_legal_entity			moyen de factorise tout ça
+		- id
+		- type
+		- num_siret
+		- num_siren
+		- address
+		- number_employees
+		- ...
+	- Author_natural_person)
+		- id
+		- firstname
+		- lastname
+		- address
+	- Editor 					--> personne morale ou physique (faire gaffe aux attributs que nous allons créer)
+	(- Editor_legal_entity			moyen de factorise tout ça
+		- id
+		- type
+		- num_siret
+		- num_siren
+		- address
+		- number_employees
+		- ...
+	- Editor_natural_person)
+		- id
+		- firstname
+		- lastname
+		- address
 
 
 	- Category
@@ -43,5 +71,5 @@ Database
 		- start_date
 		- end_date
 		- fk_book			--> peut être crée une autre table car si nous rajoutons un média il faudra alors rajouter une "fk" à chaque fois dans cette table
-		- fk_dvd			--> de plus, lors d'un emprunt, au minimum une colonne "fk" sera vide, je pense qu'il y a moyen de faire autrement 
+		- fk_dvd			 
 		- fk_user	 
