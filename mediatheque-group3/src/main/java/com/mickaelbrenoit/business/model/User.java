@@ -38,6 +38,8 @@ public class User implements Serializable {
     @Size(min=2, max=30)
     private String login;
     
+    @NotNull
+    @Size(min=2, max=60)
     private String password;
 
     // This field exists in the DB
