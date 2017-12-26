@@ -16,7 +16,7 @@ import com.mickaelbrenoit.utils.PasswordUtils;
 
 @Entity
 @Table(uniqueConstraints={@UniqueConstraint(columnNames={"login"})})
-public class Person implements Serializable {
+public class User implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -35,7 +35,7 @@ public class Person implements Serializable {
     private String email;
     
     @NotNull
-    @Size(min=2, max=20)
+    @Size(min=2, max=30)
     private String login;
     
     private String password;
@@ -45,10 +45,10 @@ public class Person implements Serializable {
 	@ManyToOne
 	private Role role;
     
-    public Person() {
+    public User() {
 	}	
 	
-    public Person(String login, String password, String firstName, String lastName, String email) {
+    public User(String login, String password, String firstName, String lastName, String email) {
     	this.login = login;
 		this.password = PasswordUtils.hashPassword(password);
 		this.firstName = firstName;
@@ -114,7 +114,7 @@ public class Person implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Person [firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", login=" + login
+		return "User [firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", login=" + login
 				+ "]";
 	}
 	

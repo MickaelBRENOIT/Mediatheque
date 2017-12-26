@@ -1,4 +1,49 @@
-<body>
-	<header>
-		<!--  TODO: navbar  -->
-	</header>
+<div th:replace="fragments/head"></div>
+
+<!--Main Navigation-->
+<header>
+
+	<nav
+		class="navbar navbar-expand-lg navbar-dark fixed-top indigo">
+		<a class="navbar-brand" href="#"><strong th:text="#{navbrand}"></strong></a>
+
+		<!-- Collapse button -->
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<!-- Collapsible content -->
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+			<ul class="navbar-nav mr-auto">
+
+				<li class="nav-item active"><a class="nav-link" href="#"
+					th:text="#{home}"><span class="sr-only">(current)</span></a></li>
+				<!--                     <li class="nav-item"> -->
+				<!--                         <a class="nav-link" href="#">Profile</a> -->
+				<!--                     </li> -->
+
+				<!-- Dropdown -->
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" id="navbarDropdownMenuLink"
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+					th:text="#{chooselang}"> <span class="caret"></span>
+				</a>
+					<div class="dropdown-menu dropdown-primary"
+						aria-labelledby="navbarDropdownMenuLink">
+						<a class="dropdown-item waves-light" th:href="@{?lang=en}"
+							th:text="#{english}"></a> <a class="dropdown-item waves-light"
+							th:href="@{?lang=fr}" th:text="#{french}"></a>
+					</div></li>
+			</ul>
+			<form class="form-inline">
+				<input class="form-control mr-sm-2" type="text" placeholder="Search"
+					aria-label="Search" />
+			</form>
+		</div>
+	</nav>
+
+</header>

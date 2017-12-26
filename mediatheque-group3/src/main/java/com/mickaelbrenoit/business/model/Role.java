@@ -30,7 +30,7 @@ public class Role implements Serializable {
 	// This field doesn't exist in the database
     // It is simulated with a SQL query
 	@OneToMany(mappedBy="role", fetch=FetchType.LAZY)
-	private List<Person> persons = new ArrayList<>(0);
+	private List<User> users = new ArrayList<>(0);
 	
 	public Role() {
 	}
@@ -55,12 +55,12 @@ public class Role implements Serializable {
 		this.name = name;
 	}
 
-	public List<Person> getPersons() {
-		return persons;
+	public List<User> getUsers() {
+		return users;
 	}
 
-	public void setPersons(List<Person> persons) {
-		this.persons = persons;
+	public void setUsers(List<User> users) {
+		this.users = users;
 	}
 
 }

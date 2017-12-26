@@ -1,28 +1,23 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
-	th:with="localeLanguage=${#locale.language}" th:lang="${localeLanguage}">
-
 <head>
 
     <!-- allow to use accents -->
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
 
     <!-- Basic SEO Optimization -->
-    <meta name="description" content="">
-    <meta name="keywords" content="">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
 
     <!-- allow compatibility with IE -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!-- allow compatibility with small devices like tablets and phones -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- title of the website -->
     <title>Mediatheque Groupe 3</title>
 
     <!-- icon of the website -->
-    <link rel="shortcut icon" href="">
+    <link rel="shortcut icon" href="" />
 
     <!-- TODO enable CSRF -->
     <meta th:name="${_csrf.parameterName}" th:content="${_csrf.token}" />
@@ -31,8 +26,9 @@
     
 	<link rel="stylesheet" th:href="@{/static/css/bootstrap.min.css}" />
 	<link rel="stylesheet" th:href="@{/static/css/bootstrap.min.css.map}" />
-	<link rel="stylesheet" th:href="@{/static/css/font-awesome.min.css}" />
+	<link rel="stylesheet" th:href="@{/static/css/font-awesome/css/font-awesome.min.css}" />
 	<link rel="stylesheet" th:href="@{/static/css/mdb.min.css}" />
-	
+	<link rel="stylesheet" th:href="@{/static/css/animate.css}" />
+	<link rel="stylesheet" th:href="@{/static/css/custom.css}" />
 
 </head>

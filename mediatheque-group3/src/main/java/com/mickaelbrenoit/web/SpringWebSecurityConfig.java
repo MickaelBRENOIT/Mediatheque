@@ -48,14 +48,14 @@ public class SpringWebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http.authorizeRequests().antMatchers("/login/**").permitAll();
 		
-		http.formLogin().loginPage("/login").permitAll();
+		http.formLogin().loginPage("/home").permitAll();
 		http.logout().logoutSuccessUrl("/");
 
 		http.authorizeRequests().anyRequest().authenticated();
 		
 		// TODO enable SSL
-		http.requiresChannel().antMatchers("/").requiresInsecure();
-		http.requiresChannel().antMatchers("/home").requiresInsecure();
+//		http.requiresChannel().antMatchers("/").requiresInsecure();
+//		http.requiresChannel().antMatchers("/home").requiresInsecure();
 		http.requiresChannel().anyRequest().requiresSecure();
 
 		// TODO enable Exception handling

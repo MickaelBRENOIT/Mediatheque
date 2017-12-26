@@ -11,35 +11,35 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.mickaelbrenoit.business.model.Person;
+import com.mickaelbrenoit.business.model.User;
 import com.mickaelbrenoit.business.model.Role;
-import com.mickaelbrenoit.business.service.PersonService;
+import com.mickaelbrenoit.business.service.UserService;
 
 //TODO enable Users in DB
 @Service("securityUserDetailsService")
 public class SecurityUserDetailsService implements UserDetailsService {
     
 	@Autowired
-    private PersonService personService;
+    private UserService userService;
 
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-        Person loggedInPerson = personService.findByLogin(login);
-        if (loggedInPerson == null) {
+        User loggedInUser = userService.findByLogin(login);
+        if (loggedInUser == null) {
             throw new UsernameNotFoundException(login);
         }
         
-        List<GrantedAuthority> authorities = getAuthorities(loggedInPerson);
+        List<GrantedAuthority> authorities = getAuthorities(loggedInUser);
         boolean enabled = true;
         boolean accountNonExpired = true;
         boolean credentialsNonExpired = true;
         boolean accountNonLocked = true;
         return new CustomUserDetails(
-        		loggedInPerson.getLogin(),
-        		loggedInPerson.getPassword(),
-        		loggedInPerson.getFirstName(),
-        		loggedInPerson.getLastName(),
-        		loggedInPerson.getEmail(),
+        		loggedInUser.getLogin(),
+        		loggedInUser.getPassword(),
+        		loggedInUser.getFirstName(),
+        		loggedInUser.getLastName(),
+        		loggedInUser.getEmail(),
                 enabled,
                 accountNonExpired,
                 credentialsNonExpired,
@@ -47,9 +47,9 @@ public class SecurityUserDetailsService implements UserDetailsService {
                 authorities);
     }
     
-    private static List<GrantedAuthority> getAuthorities(Person person) {
+    private static List<GrantedAuthority> getAuthorities(User user) {
         final List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-        final Role role = person.getRole();
+        final Role role = user.getRole();
         authorities.add(new SimpleGrantedAuthority(role.getName()));
         return authorities;
     }
