@@ -26,8 +26,8 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public void delete(Long id) throws ServiceException {
-		userRepository.delete(id);
+	public void delete(Long idUser) throws ServiceException {
+		userRepository.delete(idUser);
 	}
 	
 	@Override
@@ -36,8 +36,8 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public User findById(Long id) throws ServiceException {
-		return userRepository.findOne(id);
+	public User findById(Long idUser) throws ServiceException {
+		return userRepository.findOne(idUser);
 	}
 	
 	@Override
@@ -45,6 +45,11 @@ public class UserServiceImpl implements UserService {
 		return userRepository.findByLogin(login);
 	}
 	
+	@Override
+	public User findByLoginAndPassword(String login, String password) {
+		return userRepository.findByLoginAndPassword(login, password);
+	}
+
 	@Override
 	public List<User> findByFirstNameAndLastName(String firstName, String lastName) throws ServiceException {
 		return userRepository.findByFirstNameAndLastName(firstName, lastName);

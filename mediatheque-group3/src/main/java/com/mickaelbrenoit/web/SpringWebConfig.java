@@ -60,10 +60,10 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
 	@Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("home");
-        registry.addViewController("/home").setViewName("home");
+//        registry.addViewController("/home").setViewName("home");
         
         // TODO enable SpringSecurity
-        registry.addViewController("/login").setViewName("login");
+//        registry.addViewController("/login").setViewName("home");
         
         // TODO enable Exception handling
         registry.addViewController("/403").setViewName("error/403");

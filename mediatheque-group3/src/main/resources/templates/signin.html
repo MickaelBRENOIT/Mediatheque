@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	th:with="localeLanguage=${#locale.language}"
+	th:lang="${localeLanguage}" id="html-home">
+
+<div th:replace="fragments/head"></div>
+
+<!-- Body content -->
+<body id="body-home">
+
+	<div th:replace="fragments/header"></div>
+
+	<div id="bg-home">
+		<div class="container h-100">
+			<div class="row h-100 justify-content-center align-items-center">
+				<form th:action="@{/signin/form}" th:object="${user}" method="post">
+					<p class="h3 text-center text-white mb-5" th:text="#{signin_title}"></p>
+
+					<div class="md-form">
+						<i class="fa fa-user prefix white-text"></i> <input type="text"
+							th:field="*{login}" class="form-control text-white" /> <label
+							for="orangeForm-name" th:text="#{signup_login}" class="text-white"></label>
+					</div>
+
+					<div class="md-form">
+						<i class="fa fa-lock prefix white-text"></i> <input type="password"
+							th:field="*{password}" class="form-control text-white" /> <label
+							for="orangeForm-pass" th:text="#{signup_password}" class="text-white"></label>
+					</div>
+					<p th:if="${usernotfound}" th:text="#{error_signin_user_not_found}"
+						class="text-danger"></p>
+					<div class="text-center">
+						<button type="submit" class="btn btn-outline-white btn-primary wow fadeInDown"
+							th:text="#{signin_title}"></button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<div th:replace="fragments/footer"></div>
+
+</body>
+</html>

@@ -1,4 +1,35 @@
 /* Your custom styles */
-#main-home {
-	margin-top: 4rem;
+/* #main-home { */
+/* 	margin-top: 4rem; */
+/* } */
+
+/* #register-card{ */
+/* 	margin-bottom: 30px; */
+/* } */
+
+#body-home, #html-home {
+    height: 100%;
+}
+#bg-home { 
+    /* The image used */
+    background-image: url("../img/home-background.jpg");
+
+    /* Full height */
+    height: 100%; 
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+h1 {
+    letter-spacing: 8px;
+}
+h5 {
+    letter-spacing: 3px;
+}
+.hr-light {
+    border-top: 3px solid #fff;
+    width: 80px;
 }

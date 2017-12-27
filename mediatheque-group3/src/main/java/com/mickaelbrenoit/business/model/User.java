@@ -2,6 +2,7 @@ package com.mickaelbrenoit.business.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,15 +13,16 @@ import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Email;
+
 import com.mickaelbrenoit.utils.PasswordUtils;
 
 @Entity
-@Table(uniqueConstraints={@UniqueConstraint(columnNames={"login"})})
 public class User implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	private Long idUser;
 	
     @NotNull
     @Size(min=2, max=30)
@@ -32,6 +34,7 @@ public class User implements Serializable {
     
     @NotNull
     @Size(min=2, max=50)
+    @Email
     private String email;
     
     @NotNull
@@ -39,7 +42,7 @@ public class User implements Serializable {
     private String login;
     
     @NotNull
-    @Size(min=2, max=60)
+    @Size(min=8, max=60)
     private String password;
 
     // This field exists in the DB
@@ -58,12 +61,12 @@ public class User implements Serializable {
 		this.email = email;
 	}
 
-	public Long getId() {
-		return id;
+	public Long getIdUser() {
+		return idUser;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setIdUser(Long idUser) {
+		this.idUser = idUser;
 	}
 
 	public String getFirstName() {
@@ -116,8 +119,8 @@ public class User implements Serializable {
 
 	@Override
 	public String toString() {
-		return "User [firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", login=" + login
-				+ "]";
+		return "User [idUser=" + idUser + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
+				+ ", login=" + login + ", password=" + password + ", role=" + role + "]";
 	}
 	
 }

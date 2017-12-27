@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	th:with="localeLanguage=${#locale.language}"
+	th:lang="${localeLanguage}">
+
+<div th:replace="fragments/head"></div>
+
+<!-- Body content -->
+<body>
+
+	<div th:replace="fragments/header"></div>
+
+	<h1>Welcome</h1>
+
+	<div th:replace="fragments/footer"></div>
+
+</body>
+
+</html>
