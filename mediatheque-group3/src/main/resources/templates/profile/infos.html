@@ -11,7 +11,14 @@
 
 	<div th:replace="fragments/header"></div>
 
-	<h1>Welcome</h1>
+	<br/>
+	<br/>
+	<br/>
+	<h1>Welcome...</h1>
+	<br/>
+	<br/>
+	<br/>
+	<h1 th:if="${session.role} == 'USER'" th:text="${session.login}"></h1>
 
 	<div th:replace="fragments/footer"></div>
 

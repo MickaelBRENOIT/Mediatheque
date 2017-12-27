@@ -38,15 +38,15 @@ public class SpringWebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 
 		// TODO enable SpringSecurity
-//		http.authorizeRequests().antMatchers("/**").permitAll();
+		http.authorizeRequests().antMatchers("/**").permitAll();
 
 		// TODO enable SpringSecurity
-		http.authorizeRequests().antMatchers("/").permitAll();
-		http.authorizeRequests().antMatchers("/signin/**").permitAll();
-		http.authorizeRequests().antMatchers("/signup/**").permitAll();
+//		http.authorizeRequests().antMatchers("/").permitAll();
+//		http.authorizeRequests().antMatchers("/signin/**").permitAll();
+//		http.authorizeRequests().antMatchers("/signup/**").permitAll();
 //		http.authorizeRequests().antMatchers("/home/**").permitAll();
 //		http.authorizeRequests().antMatchers("/person*").access("hasAuthority('ADMIN')");
-//		http.authorizeRequests().antMatchers("/product*").access("hasAuthority('USER')");
+/*		http.authorizeRequests().antMatchers("/profile*").hasRole("USER");*/
 
 /*		http.authorizeRequests().antMatchers("/login/**").permitAll();*/
 		

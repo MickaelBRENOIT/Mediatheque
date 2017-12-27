@@ -1,5 +1,7 @@
 package com.mickaelbrenoit.web.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -42,12 +44,15 @@ public class ConnexionController {
 	}
 
 	@RequestMapping(value="/signin/form", method = RequestMethod.POST)
-	public String login(@ModelAttribute User user, Model model) {
+	public String login(@ModelAttribute User user, Model model, HttpServletRequest request, HttpSession session) {
 		
 		User loginexists = userService.findByLogin(user.getLogin());
 		
 		if(loginexists != null) {
 			if(PasswordUtils.decodePassword(user.getPassword(), loginexists.getPassword())) {
+				session = request.getSession(true);
+				session.setAttribute("login", loginexists.getLogin());
+				session.setAttribute("role", loginexists.getRole().getName());
 				return "redirect:/profile";
 			}			
 		}
@@ -59,7 +64,7 @@ public class ConnexionController {
 	}
 	
 	@RequestMapping(value="/signup/form", method = RequestMethod.POST)
-	public String register(@Valid @ModelAttribute User user, BindingResult bindingResult, Model model) {
+	public String register(@Valid @ModelAttribute User user, BindingResult bindingResult, Model model, HttpServletRequest request, HttpSession session) {
 		
 		User alreadyExists = userService.findByLogin(user.getLogin());
 		
@@ -74,6 +79,11 @@ public class ConnexionController {
 		user.setPassword(PasswordUtils.hashPassword(user.getPassword()));
 		
 		userService.save(user);
+		
+		session = request.getSession(true);
+		session.setAttribute("login", user.getLogin());
+		session.setAttribute("role", user.getRole().getName());
+		
 		return "redirect:/profile";
 	}
 }
