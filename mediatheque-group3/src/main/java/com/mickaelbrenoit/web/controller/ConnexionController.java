@@ -51,6 +51,7 @@ public class ConnexionController {
 		if(loginexists != null) {
 			if(PasswordUtils.decodePassword(user.getPassword(), loginexists.getPassword())) {
 				session = request.getSession(true);
+				session.setAttribute("iduser", loginexists.getIdUser());
 				session.setAttribute("login", loginexists.getLogin());
 				session.setAttribute("role", loginexists.getRole().getName());
 				return "redirect:/profile";
@@ -81,6 +82,7 @@ public class ConnexionController {
 		userService.save(user);
 		
 		session = request.getSession(true);
+		session.setAttribute("iduser", user.getIdUser());
 		session.setAttribute("login", user.getLogin());
 		session.setAttribute("role", user.getRole().getName());
 		
