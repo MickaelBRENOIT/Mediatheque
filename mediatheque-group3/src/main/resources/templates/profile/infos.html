@@ -18,7 +18,12 @@
 	<br/>
 	<br/>
 	<br/>
-	<h1 th:if="${session.role} == 'USER'" th:text="${session.login}"></h1>
+	<div th:if="${session.role} == 'USER'">
+	
+		<p th:text="${session.login}"></p>
+		<p>Lorem Ipsum</p>
+	
+	</div>
 
 	<div th:replace="fragments/footer"></div>
 

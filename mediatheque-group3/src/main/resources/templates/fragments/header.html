@@ -24,22 +24,53 @@
 				<!--                         <a class="nav-link" href="#">Profile</a> -->
 				<!--                     </li> -->
 
-				<!-- Dropdown -->
-				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" id="navbarDropdownMenuLink"
-					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-					th:text="#{chooselang}"> <span class="caret"></span>
+				<!-- Dropdown Languages -->
+				<li class="nav-item btn-group">
+				<a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="#{chooselang}"> <span class="caret"></span>
 				</a>
-					<div class="dropdown-menu dropdown-primary"
+					<div class="dropdown-menu"
 						aria-labelledby="navbarDropdownMenuLink">
 						<a class="dropdown-item" th:href="@{?lang=en}" th:text="#{english}"></a> 
 						<a class="dropdown-item" th:href="@{?lang=fr}" th:text="#{french}"></a>
+					</div>
+				</li>
+				<!-- Dropdown USER -->
+				<li th:if="${session.role} == 'USER'" class="nav-item btn-group">
+				<a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="${session.role} + ' - ' + ${session.login}"> <span class="caret"></span>
+				</a>
+					<div class="dropdown-menu"
+						aria-labelledby="navbarDropdownMenuLink">
+						<a class="dropdown-item" th:href="@{/}" th:text="#{loans}"></a> 
+						<a class="dropdown-item" th:href="@{/}" th:text="#{edit_profile}"></a>
+						<a class="dropdown-item" th:href="@{/}" th:text="#{logout}"></a>
+					</div>
+				</li>
+				<!-- Dropdown EMP -->
+				<li th:if="${session.role} == 'EMP'" class="nav-item btn-group">
+				<a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="${session.role} + ' - ' + ${session.login}"> <span class="caret"></span>
+				</a>
+					<div class="dropdown-menu"
+						aria-labelledby="navbarDropdownMenuLink">
+						<a class="dropdown-item" th:href="@{/}" th:text="#{manage_items}"></a> 
+						<a class="dropdown-item" th:href="@{/}" th:text="#{manage_users}"></a>
+						<a class="dropdown-item" th:href="@{/}" th:text="#{logout}"></a>
+					</div>
+				</li>
+				<!-- Dropdown ADMIN -->
+				<li th:if="${session.role} == 'ADMIN'" class="nav-item btn-group">
+				<a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="${session.role} + ' - ' + ${session.login}"> <span class="caret"></span>
+				</a>
+					<div class="dropdown-menu"
+						aria-labelledby="navbarDropdownMenuLink">
+						<a class="dropdown-item" th:href="@{/}" th:text="#{manage_employees}"></a> 
+						<a class="dropdown-item" th:href="@{/}" th:text="#{logout}"></a>
 					</div>
 				</li>
 			</ul>
 			<form class="form-inline">
 				<input class="form-control mr-sm-2" type="text" placeholder="Search"
 					aria-label="Search" />
+					<button class="btn btn-outline-success btn-sm my-0" type="submit">Search</button>
 			</form>
 		</div>
 	</nav>

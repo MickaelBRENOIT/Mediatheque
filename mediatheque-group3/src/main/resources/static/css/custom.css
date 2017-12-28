@@ -7,6 +7,13 @@
 /* 	margin-bottom: 30px; */
 /* } */
 
+.navbar .btn-group .dropdown-menu a:hover {
+color: #000 !important;
+}
+.navbar .btn-group .dropdown-menu a:active {
+color: #fff !important;
+}
+
 #body-home, #html-home {
     height: 100%;
 }
