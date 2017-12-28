@@ -88,4 +88,11 @@ public class ConnexionController {
 		
 		return "redirect:/profile";
 	}
+	
+	@RequestMapping(value="/logout")
+	public String logout(HttpServletRequest request, HttpSession session) {
+		session = request.getSession(false);
+		session.invalidate();
+		return "redirect:/";
+	}
 }
