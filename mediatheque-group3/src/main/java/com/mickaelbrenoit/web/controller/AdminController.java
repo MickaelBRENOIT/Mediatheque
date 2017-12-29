@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -64,6 +65,12 @@ public class AdminController {
 		
 		userService.save(user);
 		
+		return "redirect:/admin/listemployees";
+	}
+	
+	@RequestMapping(value = "/deleteemployee/{id}", method = RequestMethod.GET)
+	public String deleteProduct(@PathVariable("id") Long id) {
+		userService.delete(id);
 		return "redirect:/admin/listemployees";
 	}
 }
