@@ -2,12 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
 	th:with="localeLanguage=${#locale.language}"
-	th:lang="${localeLanguage}">
+	th:lang="${localeLanguage}" id="html-home">
 
 <div th:replace="fragments/head"></div>
 
 <!-- Body content -->
-<body>
+<body id="body-home">
 
 	<div th:replace="fragments/header"></div>
 
@@ -28,15 +28,15 @@
 								<th th:text="#{action}"></th>
 							</tr>
 						</thead>
-						<tfoot>
-							<tr>
-								<th th:text="#{signup_firstname}"></th>
-								<th th:text="#{signup_lastname}"></th>
-								<th th:text="#{signup_login}"></th>
-								<th th:text="#{signup_email}"></th>
-								<th th:text="#{action}"></th>
-							</tr>
-						</tfoot>
+<!-- 						<tfoot> -->
+<!-- 							<tr> -->
+<!-- 								<th th:text="#{signup_firstname}"></th> -->
+<!-- 								<th th:text="#{signup_lastname}"></th> -->
+<!-- 								<th th:text="#{signup_login}"></th> -->
+<!-- 								<th th:text="#{signup_email}"></th> -->
+<!-- 								<th th:text="#{action}"></th> -->
+<!-- 							</tr> -->
+<!-- 						</tfoot> -->
 						<tbody>
 							<tr th:each="employee : ${employees}">
 								<td th:text="${employee.firstName}"></td>
@@ -54,7 +54,6 @@
 			</div>
 		</div>
 	</div>
-	
 
 	<div th:replace="fragments/footer"></div>
 
