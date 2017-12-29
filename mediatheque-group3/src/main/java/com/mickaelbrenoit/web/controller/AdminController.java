@@ -41,6 +41,33 @@ public class AdminController {
 		return "admin/listofemployees";
 	}
 	
+	@RequestMapping(value="/addemployee", method = RequestMethod.GET)
+	public String addEmployee(Model model) {
+		model.addAttribute("user", new User());
+		model.addAttribute("role", roleService.findByName("EMP"));
+		return "admin/addemployee";
+	}
+	
+	@RequestMapping(value="/addemployee", method = RequestMethod.POST)
+	public String formAddEmployee(@Valid @ModelAttribute User user, BindingResult bindingResult, Model model) {
+		
+		User alreadyExists = userService.findByLogin(user.getLogin());
+		
+		if (bindingResult.hasErrors() || alreadyExists != null) {
+			model.addAttribute("role", roleService.findByName("EMP"));
+			if(alreadyExists != null) {
+				model.addAttribute("loginalreadyexists", user.getLogin());
+			}
+            return "admin/addemployee";
+        }
+
+		user.setPassword(PasswordUtils.hashPassword(user.getPassword()));
+		
+		userService.save(user);
+		
+		return "redirect:/admin/listemployees";
+	}
+	
 	@RequestMapping(value="/editemployee", method = RequestMethod.GET)
 	public String editEmployee(@RequestParam("id") Long id, Model model) {
 		model.addAttribute("user", userService.findById(id));
