@@ -54,7 +54,7 @@ public class ConnexionController {
 				session.setAttribute("iduser", loginexists.getIdUser());
 				session.setAttribute("login", loginexists.getLogin());
 				session.setAttribute("role", loginexists.getRole().getName());
-				return "redirect:/profile";
+				return "redirect:/";
 			}			
 		}
 		
@@ -86,7 +86,7 @@ public class ConnexionController {
 		session.setAttribute("login", user.getLogin());
 		session.setAttribute("role", user.getRole().getName());
 		
-		return "redirect:/profile";
+		return "redirect:/";
 	}
 	
 	@RequestMapping(value="/logout")

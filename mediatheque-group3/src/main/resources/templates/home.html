@@ -35,7 +35,7 @@
 		                </div>
 		                <div th:if="${session.role} == 'ADMIN'" class="d-inline">
 		                	<h5 class="font-up mb-3 white-text wow fadeInDown" data-wow-delay="0.4s" th:text="${session.role} + ' - ' + ${session.login}"></h5>
-			                <a class="btn btn-outline-white btn-secondary wow fadeInDown" data-wow-delay="0.4s" th:text="#{manage_employees}" th:href="@{/}"></a> 
+			                <a class="btn btn-outline-white btn-secondary wow fadeInDown" data-wow-delay="0.4s" th:text="#{manage_employees}" th:href="@{/admin/listemployees}"></a> 
 			                <a class="btn btn-outline-white btn-info wow fadeInDown" data-wow-delay="0.4s" th:text="#{dashboard}" th:href="@{/}"></a>
 		                </div>   
 		            </div>

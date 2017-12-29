@@ -54,5 +54,10 @@ public class UserServiceImpl implements UserService {
 	public List<User> findByFirstNameAndLastName(String firstName, String lastName) throws ServiceException {
 		return userRepository.findByFirstNameAndLastName(firstName, lastName);
 	}
+
+	@Override
+	public List<User> findAllByRole(String role) {
+		return (List<User>) userRepository.findAllByRole(role);
+	}
 	
 }

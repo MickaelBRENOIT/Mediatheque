@@ -18,6 +18,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	
     @Query("select p from User p where p.role.name = :roleName order by p.lastName, p.firstName")
     List<User> findByRole(@Param("roleName") String roleName);
+    
+    @Query("SELECT p FROM User p where p.role.name = :role ORDER BY p.lastName, p.firstName")
+	List<User> findAllByRole(@Param("role") String role);
 
     // pour dire à spring-data-jpa que cette query est une opération update et qu'elle requiert executeUpdate() et non executeQuery()
 //    @Modifying
