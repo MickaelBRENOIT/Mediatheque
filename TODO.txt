@@ -72,4 +72,9 @@ Database
 		- end_date
 		- fk_book			--> peut être crée une autre table car si nous rajoutons un média il faudra alors rajouter une "fk" à chaque fois dans cette table
 		- fk_dvd			 
-		- fk_user	 
+		- fk_user
+
+
+Code:
+	- les formulaires sont répétitifs (ajouter et modifier), on peut l'externaliser et l'importer dans les fichiers où on en a besoin (dossier 'emp' et 'admin')
+	- changer le update (le login doit pouvoir être le même que la personne qui tente de changer son profil) dans les controllers partie 'edit' 	 
