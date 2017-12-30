@@ -3,6 +3,7 @@ Database
 	- Items
 		- universal_product_code (EAN, UPC, ISBN, ASIN)
 		- title
+		- summary
 		- release_date
 		- quantity
 		- number_pages
@@ -10,21 +11,24 @@ Database
 		- fk_author
 		- fk_editor
 		- fk_category
+		- fk_type_item
 	- Category
 		- id_category
 		- name_category
+	- TypeItem (CD, DVD, BOOK, NEWSPAPER, MAGAZINE, ...)
+		- id_type
+		- name_type
 
-
-		--> Il peut y avoir plus de médias (cd, newspaper, ...)
-
-
-	- Author/Editor
+	- Author/Editor/Illustrator
 		- id
-		- firstname								--> les champs peuvent être nuls suivants si c'est une personne morale/physique
+		- firstname								--> les champs peuvent être nuls suivant si c'est une personne morale/physique
 		- lastname
 		- address
 		- designation (SARL, SA, SAS, ...)
 		- business_number (siret)
+	- TypeProfession
+		- id
+		- name_profession
 
 	- User
 		- id_user
@@ -32,9 +36,9 @@ Database
 		- lastname
 		- address
 		- email
-		- password
-		- fk_role
-	- Role
+		- password			--> il y a aussi la question de l'abonnement a géré
+		- fk_role				--> ce qui implique la notion d'âge de la persone
+	- Role 						--> https://www.mediatheques.strasbourg.eu/medias/medias.aspx?INSTANCE=EXPLOITATION&PORTAL_ID=WBCT_WBCTDOC_160.xml
 		- id_role
 		- name_role
 
@@ -45,7 +49,10 @@ Database
 		- fk_item			 
 		- fk_user
 
+Remarque(s):
+	- pour l'instant pas besoin de prendre en compte les auteurs/éditeurs/illustrateurs/...
 
 Code:
 	- les formulaires sont répétitifs (ajouter et modifier), on peut l'externaliser et l'importer dans les fichiers où on en a besoin (dossier 'emp' et 'admin')
-	- changer le update (le login doit pouvoir être le même que la personne qui tente de changer son profil) dans les controllers partie 'edit' 	 
+	- changer le update (le login doit pouvoir être le même que la personne qui tente de changer son profil) dans les controllers partie 'edit' 
+	- margin-top/bottom à voir	 
