@@ -1,60 +1,31 @@
 Database
-	- Book
-		- id_book
-		- title
-		- date_publication
-		- number_pages
-		- quantity
-		- fk_author
-		- fk_editor
-		- fk_category
-	- DVD
-		- id_dvd
+
+	- Items
+		- universal_product_code (EAN, UPC, ISBN, ASIN)
 		- title
 		- release_date
-		- duration
 		- quantity
+		- number_pages
+		- duration
 		- fk_author
 		- fk_editor
 		- fk_category
+	- Category
+		- id_category
+		- name_category
 
 
 		--> Il peut y avoir plus de médias (cd, newspaper, ...)
 
 
-	- Author 					--> personne morale ou physique (faire gaffe aux attributs que nous allons créer)
-	(- Author_legal_entity			moyen de factorise tout ça
+	- Author/Editor
 		- id
-		- type
-		- num_siret
-		- num_siren
-		- address
-		- number_employees
-		- ...
-	- Author_natural_person)
-		- id
-		- firstname
+		- firstname								--> les champs peuvent être nuls suivants si c'est une personne morale/physique
 		- lastname
 		- address
-	- Editor 					--> personne morale ou physique (faire gaffe aux attributs que nous allons créer)
-	(- Editor_legal_entity			moyen de factorise tout ça
-		- id
-		- type
-		- num_siret
-		- num_siren
-		- address
-		- number_employees
-		- ...
-	- Editor_natural_person)
-		- id
-		- firstname
-		- lastname
-		- address
+		- designation (SARL, SA, SAS, ...)
+		- business_number (siret)
 
-
-	- Category
-		- id_category
-		- name_category
 	- User
 		- id_user
 		- firstname
@@ -66,12 +37,12 @@ Database
 	- Role
 		- id_role
 		- name_role
+
 	- Loan
 		- id_loan
 		- start_date
 		- end_date
-		- fk_book			--> peut être crée une autre table car si nous rajoutons un média il faudra alors rajouter une "fk" à chaque fois dans cette table
-		- fk_dvd			 
+		- fk_item			 
 		- fk_user
 
 
