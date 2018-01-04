@@ -6,7 +6,7 @@ Database
 		- summary
 		- release_date
 		- quantity
-		- number_pages
+		- number_pages							--> duration & number_pages peuvent être nuls suivant si le média est papier ou numérique
 		- duration
 		- fk_author
 		- fk_editor
