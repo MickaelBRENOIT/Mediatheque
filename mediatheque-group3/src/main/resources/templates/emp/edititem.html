@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	th:with="localeLanguage=${#locale.language}"
+	th:lang="${localeLanguage}" id="html-home">
+
+<div th:replace="fragments/head"></div>
+
+<!-- Body content -->
+<body id="body-home">
+
+	<div th:replace="fragments/header"></div>
+
+	<div id="bg-home">
+		<div class="container h-100">
+		    <div class="row h-100 justify-content-center align-items-center">
+            	<!-- Form register -->
+				<form th:action="@{/emp/edititem}" th:object="${item}" method="post" width="100%">
+					<p class="h3 text-center text-white mb-3" th:text="#{edititem}"></p>
+					<input type="hidden" th:field="*{idItem}" />
+					<div class="form-inline">
+						<div class="md-form">
+							<i class="fa fa-pencil fa-lg prefix white-text"></i> <input type="number"
+								th:field="*{universalProductCode}" class="form-control text-white"/> <label
+								for="orangeForm-name" th:text="#{item_upc}" class="text-white"></label>
+							<p th:if="${#fields.hasErrors('universalProductCode')}"
+								th:errors="*{universalProductCode}" th:text="#{error_item_upc}"
+								class="text-danger"></p>
+							<p th:if="${upcalreadyexists}"
+								th:text="#{error_item_upc_exists}" class="text-danger"></p>
+						</div>
+						<div class="md-form">
+							<i class="fa fa-pencil fa-lg prefix white-text"></i> <input type="text"
+								th:field="*{title}" class="form-control text-white" /> <label
+								for="orangeForm-name" th:text="#{item_title}" class="text-white"></label>
+							<p th:if="${#fields.hasErrors('title')}"
+								th:errors="*{title}" th:text="#{error_item_title}"
+								class="text-danger"></p>
+						</div>
+					</div>
+					<div class="md-form">
+						<i class="fa fa-pencil fa-lg prefix white-text"></i> <textarea type="text"
+							th:field="*{summary}" class="md-textarea text-white" style="height: 70px" length="250"></textarea> <label
+							for="orangeForm-name" th:text="#{item_summary}" class="text-white"></label>
+						<p th:if="${#fields.hasErrors('summary')}"
+							th:errors="*{summary}" th:text="#{error_item_summary}"
+							class="text-danger"></p>
+					</div>
+<!-- 					th:text="${#dates.format(standardDate, 'dd-MM-yyyy')}" -->
+					<div class="form-inline">
+						<div class="md-form">
+							<i class="fa fa-calendar fa-lg prefix white-text"></i> <input type="text"
+								th:field="*{releaseDate}" class="form-control text-white" placeholder="yyyy/MM/dd" /> <label
+								for="orangeForm-name" th:text="#{item_releasedate}" class="text-white"></label>
+							<p th:if="${#fields.hasErrors('releaseDate')}" th:errors="*{releaseDate}"
+								th:text="#{error_item_releasedate}" class="text-danger"></p>
+						</div>
+						<div class="md-form">
+							<i class="fa fa-pencil fa-lg prefix white-text"></i> <input
+								type="text" th:field="*{quantity}" class="form-control text-white"/> <label
+								for="orangeForm-email" th:text="#{item_quantity}" class="text-white"></label>
+							<p th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}"
+								th:text="#{error_item_quantity}" class="text-danger"></p>
+						</div>
+					</div>
+					
+					<!-- BEGIN === form inline one or another -->
+					
+					<div class="form-inline">
+						<div class="md-form">
+							<i class="fa fa-pencil fa-lg prefix white-text"></i> <input
+								type="text" th:field="*{numberPages}" class="form-control text-white"/> <label
+								for="orangeForm-email" th:text="#{item_numberpages}" class="text-white"></label>
+							<p th:if="${#fields.hasErrors('numberPages')}" th:errors="*{numberPages}"
+								th:text="#{error_item_numberpages}" class="text-danger"></p>
+						</div>
+						<div class="md-form">
+							<i class="fa fa-pencil fa-lg prefix white-text"></i> <input
+								type="text" th:field="*{duration}" class="form-control text-white"/> <label
+								for="orangeForm-email" th:text="#{item_duration}" class="text-white"></label>
+							<p th:if="${#fields.hasErrors('duration')}" th:errors="*{duration}"
+								th:text="#{error_item_duration}" class="text-danger"></p>
+						</div>
+					</div>
+					
+					<!-- END === form inline one or another -->
+					
+					<!-- BEGIN === selects -->
+					
+					<table class="w-100">
+						<tr>
+							<td>
+								<i class="fa fa-pencil fa-lg prefix white-text"></i>
+								<label th:text="#{item_typeitem}" class="text-white ml-4"></label>
+							</td>
+							<td>
+								<select class="w-100" th:field="*{typeItem}">
+								    <option value="" disabled="disabled" selected="true" th:text="#{chooseitem}"></option>
+								    <option th:each="ti : ${typeitems}" 
+					    					th:value="${ti.idTypeItem}"
+					    					th:text="${ti.nameItem}"
+					    					th:selected="${item.typeItem} != null and ${ti.idTypeItem} == ${item.typeItem.idTypeItem}"></option>
+								</select>
+								<p th:if="${#fields.hasErrors('typeItem')}" th:errors="*{typeItem}"
+								th:text="#{error_item_typeitem}" class="text-danger"></p>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<i class="fa fa-pencil fa-lg prefix white-text"></i>
+								<label th:text="#{item_category}" class="text-white ml-4"></label>
+							</td>
+							<td>
+								<select class="w-100" th:field="*{category}">
+								    <option value="" disabled="disabled" selected="true" th:text="#{choosecategory}"></option>
+								    <option th:each="cat : ${categories}" 
+					    					th:value="${cat.idCategory}"
+					    					th:text="${cat.nameCategory}"
+					    					th:selected="${item.category} != null and ${cat.idCategory} == ${item.category.idCategory}"></option>
+								</select>
+								<p th:if="${#fields.hasErrors('category')}" th:errors="*{category}"
+								th:text="#{error_item_category}" class="text-danger"></p>
+							</td>
+						</tr>
+					</table>
+					
+					
+					<!-- END === selects -->
+
+					<div class="text-center">
+						<button type="submit" class="btn btn-outline-primary mt-4 waves-effect wow fadeInDown"
+							th:text="#{edititem}"></button>
+					</div>
+				</form>
+				<!-- Form register -->
+		    </div>
+		</div>
+	</div>	
+
+	<div th:replace="fragments/footer"></div>
+
+</body>
+
+</html>

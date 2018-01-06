@@ -40,4 +40,9 @@ public class ItemServiceImpl implements ItemService {
 		return itemRepository.findByTitle(title);
 	}
 
+	@Override
+	public Item findByUniversalProductCode(Long upc) {
+		return itemRepository.findByUniversalProductCode(upc);
+	}
+
 }

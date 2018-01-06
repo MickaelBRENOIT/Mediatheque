@@ -20,7 +20,7 @@ public class TypeItem implements Serializable {
 	private Long idTypeItem;
 
 	@NotNull
-	@Size(min = 2, max = 10)
+	@Size(min = 2, max = 30)
 	private String nameItem;
 
 	public TypeItem() {

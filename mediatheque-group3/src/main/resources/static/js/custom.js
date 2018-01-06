@@ -3,6 +3,6 @@ $(document).ready(function(){
 	
 	$('#listpersons').DataTable();
     $('select').addClass('mdb-select');
-    //$('.mdb-select').material_select();
+//    $('.mdb-select').material_select();
     $('select').css({'margin-top':'0px'});
 });

@@ -5,4 +5,5 @@ import com.mickaelbrenoit.business.model.Item;
 
 public interface ItemRepository extends JpaRepository<Item, Long>{
 	Item findByTitle(String title);
+	Item findByUniversalProductCode(Long upc);
 }

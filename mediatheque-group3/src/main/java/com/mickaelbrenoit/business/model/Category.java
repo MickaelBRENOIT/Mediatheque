@@ -20,7 +20,7 @@ public class Category implements Serializable{
 	private Long idCategory;
 
 	@NotNull
-	@Size(min = 2, max = 10)
+	@Size(min = 2, max = 30)
 	private String nameCategory;
 
 	public Category() {

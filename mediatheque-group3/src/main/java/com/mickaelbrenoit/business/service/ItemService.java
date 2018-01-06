@@ -10,4 +10,5 @@ public interface ItemService {
     List<Item> findAll();
     Item findById(Long id);
     Item findByTitle(String title);
+    Item findByUniversalProductCode(Long upc);
 }

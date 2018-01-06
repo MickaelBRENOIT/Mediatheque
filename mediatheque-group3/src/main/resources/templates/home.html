@@ -30,7 +30,7 @@
 		                </div>
 		                <div th:if="${session.role} == 'EMP'" class="d-inline">
 		                	<h5 class="font-up mb-3 white-text wow fadeInDown" data-wow-delay="0.4s" th:text="${session.role} + ' - ' + ${session.login}"></h5>
-			                <a class="btn btn-outline-default waves-effect wow fadeInDown" data-wow-delay="0.4s" th:text="#{manage_items}" th:href="@{/}"></a> 
+			                <a class="btn btn-outline-default waves-effect wow fadeInDown" data-wow-delay="0.4s" th:text="#{manage_items}" th:href="@{/emp/listitems}"></a> 
 			                <a class="btn btn-outline-secondary waves-effect wow fadeInDown" data-wow-delay="0.4s" th:text="#{manage_users}" th:href="@{/emp/listusers}"></a>
 		                </div>
 		                <div th:if="${session.role} == 'ADMIN'" class="d-inline">

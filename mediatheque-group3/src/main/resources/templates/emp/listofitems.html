@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	th:with="localeLanguage=${#locale.language}"
+	th:lang="${localeLanguage}" id="html-home">
+
+<div th:replace="fragments/head"></div>
+
+<!-- Body content -->
+<body id="body-home">
+
+	<div th:replace="fragments/header"></div>
+
+	<div class="container-fluid flex-center">
+		<div class="row pt-5 mt-3">
+			<div class="col-md-12">
+				<div class="text-center">
+				
+					<a class="btn btn-success btn-sm" th:href="@{/emp/additem}" th:text="#{additem}"></a>
+
+					<table id="listpersons"
+						class="table table-striped table-bordered table-responsive"
+						cellspacing="0" width="100%">
+						<thead>
+							<tr>
+								<th th:text="#{item_upc}"></th>
+								<th th:text="#{item_title}"></th>
+<!-- 								<th th:text="#{item_summary}"></th> -->
+								<th th:text="#{item_releasedate}"></th>
+								<th th:text="#{item_quantity}"></th>
+								<th th:text="#{item_numberpages}"></th>
+								<th th:text="#{item_duration}"></th>
+								<th th:text="#{item_typeitem}"></th>
+								<th th:text="#{item_category}"></th>
+								<th th:text="#{actions}"></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="item : ${items}">
+								<td th:text="${item.UniversalProductCode}"></td>
+								<td th:text="${item.title}"></td>
+<!-- 								<td th:text="${item.summary}"></td> -->
+								<td th:text="${item.releaseDate}"></td>
+								<td th:text="${item.quantity}"></td>
+								<td th:text="${item.numberPages}"></td>
+								<td th:text="${item.duration}"></td>
+								<td th:text="${item.typeItem.nameItem}"></td>
+								<td th:text="${item.category.nameCategory}"></td>
+								<td>
+									<a class="btn btn-warning btn-sm" th:href="@{/emp/edititem(id=${item.idItem})}" th:text="#{modify}"></a>
+									<a class="btn btn-danger btn-sm" th:href="@{'/emp/deleteitem/' + ${item.idItem}}" th:text="#{delete}"></a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div th:replace="fragments/footer"></div>
+
+</body>
+
+</html>
