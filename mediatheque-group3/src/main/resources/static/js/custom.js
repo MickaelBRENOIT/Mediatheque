@@ -5,4 +5,21 @@ $(document).ready(function(){
     $('select').addClass('mdb-select');
 //    $('.mdb-select').material_select();
     $('select').css({'margin-top':'0px'});
+    
+//    $('#input-search').autocomplete({
+//    	serviceUrl: '@{/search/getTags}',
+//    	paramName: "tagName", // ?tagName='user input'
+//    	delimiter: ",",
+//    	source: function(response) {
+//    		return {
+//    			suggestions: $.map($.parseJSON(response), function(item) {
+//    				return { 
+//    					value: item.nameCategory 
+//    				};
+//    			})
+//    			response
+//	
+//    		};
+//    	}
+//    });
 });

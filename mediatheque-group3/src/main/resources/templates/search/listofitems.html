@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	th:with="localeLanguage=${#locale.language}"
+	th:lang="${localeLanguage}" id="html-home">
+
+<div th:replace="fragments/head"></div>
+
+<!-- Body content -->
+<body id="body-home">
+
+	<div th:replace="fragments/header"></div>
+
+	<div class="container pt-5 mt-5 mb-5">
+		<div class="row">
+			<div class="col-lg-4 col-md-12" th:each="item : ${items}">
+				<!--Panel-->
+		        <div class="card text-center mb-4">
+		            <div class="card-header stylish-color-dark white-text" th:text="${item.category.nameCategory}">
+		                Featured
+		            </div>
+		            <div class="card-body">
+		                <h4 class="card-title" th:text="${item.title}"></h4>
+		                <p class="card-text" th:text="${item.summary}"></p>
+		                <a class="btn btn-default btn-sm" th:text="#{loanbutton}"></a>
+		            </div>
+		            <div class="card-footer text-muted stylish-color-dark white-text">
+		                <p class="mb-0" th:text="${item.releaseDate}"></p>
+		            </div>
+		        </div>
+		        <!--/.Panel-->
+			</div>
+		</div>
+	</div>
+
+	<div th:replace="fragments/footer"></div>
+
+</body>
+
+</html>
