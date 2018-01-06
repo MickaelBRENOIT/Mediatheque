@@ -56,5 +56,4 @@ Code:
 	- les formulaires sont répétitifs (ajouter et modifier), on peut l'externaliser et l'importer dans les fichiers où on en a besoin (dossier 'emp' et 'admin')
 	- changer le update (le login doit pouvoir être le même que la personne qui tente de changer son profil) dans les controllers partie 'edit' 
 	- margin-top/bottom à voir
-	- gérer les accès (qui peut voir quoi)
-	- ajouter les boutons "annuler" pour les formulaires pour qu'ils reviennent à la page précédente	 
+	- gérer les accès (qui peut voir quoi)	 

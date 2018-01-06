@@ -61,9 +61,11 @@
 							class="text-danger"></p>
 					</div>
 
-					<div class="text-center">
-						<button type="submit" class="btn btn-outline-primary waves-effect wow fadeInDown"
+					<div class="form-inline text-center">
+						<button type="submit" class="btn btn-outline-primary waves-effect wow fadeInDown mr-auto"
 							th:text="#{adduser}"></button>
+						<a class="btn btn-outline-danger waves-effect wow fadeInDown"
+							th:text="#{cancel}" th:href="@{/emp/listusers}"></a>
 					</div>
 					<input type="hidden" id="role" name="role"
 						th:value="${role.idRole}" />

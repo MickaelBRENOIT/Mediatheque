@@ -127,10 +127,12 @@
 					
 					<!-- END === selects -->
 
-					<div class="text-center">
-						<button type="submit" class="btn btn-outline-primary mt-4 waves-effect wow fadeInDown"
+						<div class="form-inline text-center mt-4">
+							<button type="submit" class="btn btn-outline-primary waves-effect wow fadeInDown mr-auto"
 							th:text="#{edititem}"></button>
-					</div>
+							<a class="btn btn-outline-danger waves-effect wow fadeInDown"
+							th:text="#{cancel}" th:href="@{/emp/listitems}"></a>
+						</div>
 				</form>
 				<!-- Form register -->
 		    </div>
