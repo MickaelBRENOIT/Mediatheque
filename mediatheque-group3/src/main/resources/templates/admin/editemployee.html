@@ -19,6 +19,7 @@
 					<p class="h3 text-center text-white mb-5" th:text="#{modify_title}"></p>
 
 					<input type="hidden" th:field="*{idUser}" />
+					<input type="hidden" id="currentlogin" name="currentlogin" th:value="${currentlogin}" />
 					<div class="md-form">
 						<i class="fa fa-user prefix white-text"></i> <input type="text"
 							th:field="*{firstName}" class="form-control text-white" /> <label

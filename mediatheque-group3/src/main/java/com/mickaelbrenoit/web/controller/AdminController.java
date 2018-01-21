@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mickaelbrenoit.business.model.User;
 import com.mickaelbrenoit.business.service.RoleService;
@@ -70,21 +71,28 @@ public class AdminController {
 	
 	@RequestMapping(value="/editemployee", method = RequestMethod.GET)
 	public String editEmployee(@RequestParam("id") Long id, Model model) {
-		model.addAttribute("user", userService.findById(id));
+		User user = userService.findById(id);
+		model.addAttribute("user", user);
+		model.addAttribute("currentlogin", user.getLogin());
 		model.addAttribute("role", roleService.findByName("EMP"));
 		return "admin/editemployee";
 	}
 	
 	@RequestMapping(value="/editemployee", method = RequestMethod.POST)
-	public String formEditEmployee(@Valid @ModelAttribute User user, BindingResult bindingResult, Model model) {
+	public String formEditEmployee(@Valid @ModelAttribute User user, BindingResult bindingResult, @RequestParam(value="currentlogin") String currentLogin, Model model) {
 		
 		User alreadyExists = userService.findByLogin(user.getLogin());
 		
-		if (bindingResult.hasErrors() || alreadyExists != null) {
+		if(alreadyExists != null && !alreadyExists.getLogin().equals(currentLogin)) {
 			model.addAttribute("role", roleService.findByName("EMP"));
-			if(alreadyExists != null) {
-				model.addAttribute("loginalreadyexists", user.getLogin());
-			}
+			model.addAttribute("currentlogin", currentLogin);
+			model.addAttribute("loginalreadyexists", user.getLogin());
+			return "admin/editemployee";
+		}
+		
+		if (bindingResult.hasErrors()) {
+			model.addAttribute("role", roleService.findByName("EMP"));
+			model.addAttribute("currentlogin", currentLogin);
             return "admin/editemployee";
         }
 
