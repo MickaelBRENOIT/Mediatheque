@@ -83,21 +83,28 @@ public class EmployeeController {
 	
 	@RequestMapping(value="/edituser", method = RequestMethod.GET)
 	public String editEmployee(@RequestParam("id") Long id, Model model) {
-		model.addAttribute("user", userService.findById(id));
+		User user = userService.findById(id);
+		model.addAttribute("user", user);
+		model.addAttribute("currentlogin", user.getLogin());
 		model.addAttribute("role", roleService.findByName("USER"));
 		return "emp/edituser";
 	}
 	
 	@RequestMapping(value="/edituser", method = RequestMethod.POST)
-	public String formEditEmployee(@Valid @ModelAttribute User user, BindingResult bindingResult, Model model) {
+	public String formEditEmployee(@Valid @ModelAttribute User user, BindingResult bindingResult, @RequestParam(value="currentlogin") String currentLogin, Model model) {
 		
 		User alreadyExists = userService.findByLogin(user.getLogin());
 		
-		if (bindingResult.hasErrors() || alreadyExists != null) {
+		if(alreadyExists != null && !alreadyExists.getLogin().equals(currentLogin)) {
 			model.addAttribute("role", roleService.findByName("USER"));
-			if(alreadyExists != null) {
-				model.addAttribute("loginalreadyexists", user.getLogin());
-			}
+			model.addAttribute("currentlogin", currentLogin);
+			model.addAttribute("loginalreadyexists", user.getLogin());
+			return "emp/edituser";
+		}
+		
+		if (bindingResult.hasErrors()) {
+			model.addAttribute("role", roleService.findByName("USER"));
+			model.addAttribute("currentlogin", currentLogin);
             return "emp/edituser";
         }
 
