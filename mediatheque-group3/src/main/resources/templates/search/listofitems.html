@@ -13,14 +13,22 @@
 
 	<div class="container pt-5 mt-5 mb-5">
 
-		<form th:action="@{/search/itemsbycategory}" class="form-inline justify-content-center mb-5" method="get">
-			<div class="form-group">
-				<select class="form-control mb-0" id="select-category" name="select-category">
-					<option value="" disabled="disabled" selected="true" th:text="#{choosecategory}"></option>
-					<option th:each="cat : ${categories}" th:value="${cat.nameCategory}"
-						th:text="${cat.nameCategory}"></option>
-				</select>
-				<button type="submit" class="btn btn-secondary" th:text="#{searchbutton}"></button>
+		<form th:action="@{/search/itemsbycategory}"
+			class="justify-content-center" method="get" width="100%">
+
+			<!-- 				<select class="form-control mb-0" id="select-category" name="select-category"> -->
+			<!-- 					<option value="" disabled="disabled" selected="true" th:text="#{choosecategory}"></option> -->
+			<!-- 					<option th:each="cat : ${categories}" th:value="${cat.nameCategory}" -->
+			<!-- 						th:text="${cat.nameCategory}"></option> -->
+			<!-- 				</select> -->
+			<div class="form-inline w-100 text-center">
+				<div class="md-form w-100">
+					<i class="fa fa-pencil prefix"></i> 
+					<input type="text" name="select-category" class="form-control" /> 
+					<label for="" th:text="#{enter_name_category}"></label>
+					<button type="submit" class="btn btn-secondary"
+						th:text="#{searchbutton}"></button>
+				</div>
 			</div>
 		</form>
 
@@ -33,8 +41,10 @@
 					<div class="card-body">
 						<h4 class="card-title" th:text="${item.title}"></h4>
 						<p class="card-text" th:text="${item.summary}"></p>
-						<a th:if="${session.role} == 'USER'" class="btn btn-default btn-sm" th:text="#{loanbutton}"></a>
-						<a th:if="${session.login} == null" class="btn btn-default btn-sm" th:text="#{signin_title}" th:href="@{/signin}"></a>
+						<a th:if="${session.role} == 'USER'"
+							class="btn btn-default btn-sm" th:text="#{loanbutton}"></a> <a
+							th:if="${session.login} == null" class="btn btn-default btn-sm"
+							th:text="#{signin_title}" th:href="@{/signin}"></a>
 					</div>
 					<div class="card-footer text-muted stylish-color-dark white-text">
 						<p class="mb-0" th:text="${item.releaseDate}"></p>

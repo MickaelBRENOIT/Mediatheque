@@ -12,6 +12,6 @@ public interface ItemRepository extends JpaRepository<Item, Long>{
 	Item findByTitle(String title);
 	Item findByUniversalProductCode(Long upc);
 	
-	@Query("SELECT i FROM Item i WHERE i.category.nameCategory = :nameCategory")
+	@Query("SELECT i FROM Item i WHERE i.category.nameCategory LIKE CONCAT('%',:nameCategory,'%')")
 	List<Item> findAllByCategoryName(@Param("nameCategory") String nameCategory);
 }

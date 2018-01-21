@@ -34,34 +34,15 @@ public class SearchController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String listAllItems(Model model) {
 		model.addAttribute("items", itemService.findAll());
-		model.addAttribute("categories", categoryService.findAll());
+//		model.addAttribute("categories", categoryService.findAll());
 		return "search/listofitems";
 	}
 	
 	@RequestMapping(value = "/itemsbycategory", method = RequestMethod.GET)
 	public String searchItemsByCategory(@RequestParam(value="select-category", required=true) String searchName, Model model) {
-		model.addAttribute("categories", categoryService.findAll());
-		for(Item item : itemService.findAllByCategoryName(searchName)) {
-			LOGGER.info("CURRENT ITEM : " + item.toString() + "\n");
-		}
+//		model.addAttribute("categories", categoryService.findAll());
 		model.addAttribute("items", itemService.findAllByCategoryName(searchName));
 		return "search/listofitems";
 	}
 	
-//	@RequestMapping(value = "/getTags", method = RequestMethod.GET)
-//	public @ResponseBody
-//	List<Item> getTags(@RequestParam String tagName) {
-//
-//		LOGGER.info("IN SEARCH RESULT METHOD");
-//		
-//		items.addAll(itemService.findAll());
-//		List<Item> result = new ArrayList<>();
-//		for (Item item : items) {
-//			if (item.getCategory().getNameCategory().contains(tagName)) {
-//				result.add(item);
-//			}
-//		}
-//
-//		return result;
-//	}
 }
