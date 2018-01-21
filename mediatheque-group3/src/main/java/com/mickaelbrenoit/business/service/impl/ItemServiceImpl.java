@@ -45,4 +45,9 @@ public class ItemServiceImpl implements ItemService {
 		return itemRepository.findByUniversalProductCode(upc);
 	}
 
+	@Override
+	public List<Item> findAllByCategoryName(String name) {
+		return (List<Item>) itemRepository.findAllByCategoryName(name);
+	}
+
 }

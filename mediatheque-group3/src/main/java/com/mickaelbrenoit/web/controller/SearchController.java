@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mickaelbrenoit.business.model.Item;
+import com.mickaelbrenoit.business.service.CategoryService;
 import com.mickaelbrenoit.business.service.ItemService;
 
 @Controller
@@ -25,12 +26,25 @@ public class SearchController {
 	@Autowired
 	private ItemService itemService;
 	
+	@Autowired
+	private CategoryService categoryService;
+	
 	List<Item> items = new ArrayList<>();
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String listAllItems(Model model) {
-		List<Item> items = itemService.findAll();
-		model.addAttribute("items", items);
+		model.addAttribute("items", itemService.findAll());
+		model.addAttribute("categories", categoryService.findAll());
+		return "search/listofitems";
+	}
+	
+	@RequestMapping(value = "/itemsbycategory", method = RequestMethod.GET)
+	public String searchItemsByCategory(@RequestParam(value="select-category", required=true) String searchName, Model model) {
+		model.addAttribute("categories", categoryService.findAll());
+		for(Item item : itemService.findAllByCategoryName(searchName)) {
+			LOGGER.info("CURRENT ITEM : " + item.toString() + "\n");
+		}
+		model.addAttribute("items", itemService.findAllByCategoryName(searchName));
 		return "search/listofitems";
 	}
 	
