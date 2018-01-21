@@ -186,22 +186,34 @@ public class EmployeeController {
 	public String editItem(@RequestParam("id") Long id, Model model) {
 		model.addAttribute("typeitems", typeItemService.findAll());
 		model.addAttribute("categories", categoryService.findAll());
-		model.addAttribute("item", itemService.findById(id));
+		Item item = itemService.findById(id);
+		model.addAttribute("item", item);
+		model.addAttribute("currentupc", item.getUniversalProductCode());
 		return "emp/edititem";
 	}
 	
 	@RequestMapping(value="/edititem", method = RequestMethod.POST)
-	public String formEditItem(@Valid @ModelAttribute Item item, BindingResult bindingResult, Model model) {
+	public String formEditItem(@Valid @ModelAttribute Item item, BindingResult bindingResult, @RequestParam(value="currentupc") Long currentUpc, Model model) {
 		
 		Item itemAlreadyExists = itemService.findByUniversalProductCode(item.getUniversalProductCode());
 		
-		if (bindingResult.hasErrors() || itemAlreadyExists != null) {
+		LOGGER.info("ITEM ALREADY UPC : " + itemAlreadyExists.getUniversalProductCode());
+		LOGGER.info("ITEM PARAM   UPC : " + currentUpc);
+		
+		if(itemAlreadyExists != null && !itemAlreadyExists.getUniversalProductCode().equals(currentUpc)) {
+			LOGGER.info("THIS ITEM ALREADY EXISTS !!!");
 			model.addAttribute("typeitems", typeItemService.findAll());
 			model.addAttribute("categories", categoryService.findAll());
-			if(itemAlreadyExists != null) {
-				model.addAttribute("upcalreadyexists", item.getUniversalProductCode());
-			}
-            return "emp/additem";
+			model.addAttribute("upcalreadyexists", item.getUniversalProductCode());
+			model.addAttribute("currentupc", currentUpc);
+			return "emp/edititem";
+		}
+		
+		if (bindingResult.hasErrors()) {
+			model.addAttribute("typeitems", typeItemService.findAll());
+			model.addAttribute("categories", categoryService.findAll());
+			model.addAttribute("currentupc", currentUpc);
+            return "emp/edititem";
         }
 		
 		itemService.save(item);
