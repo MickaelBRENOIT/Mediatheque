@@ -197,9 +197,6 @@ public class EmployeeController {
 		
 		Item itemAlreadyExists = itemService.findByUniversalProductCode(item.getUniversalProductCode());
 		
-		LOGGER.info("ITEM ALREADY UPC : " + itemAlreadyExists.getUniversalProductCode());
-		LOGGER.info("ITEM PARAM   UPC : " + currentUpc);
-		
 		if(itemAlreadyExists != null && !itemAlreadyExists.getUniversalProductCode().equals(currentUpc)) {
 			LOGGER.info("THIS ITEM ALREADY EXISTS !!!");
 			model.addAttribute("typeitems", typeItemService.findAll());

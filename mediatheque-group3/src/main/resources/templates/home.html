@@ -26,7 +26,7 @@
 		                <div th:if="${session.role} == 'USER'" class="d-inline">
 		                	<h5 class="font-up mb-3 white-text wow fadeInDown" data-wow-delay="0.4s" th:text="${session.role} + ' - ' + ${session.login}"></h5>
 			                <a class="btn btn-outline-secondary waves-effect wow fadeInDown" data-wow-delay="0.4s" th:text="#{loans}" th:href="@{/}"></a> 
-			                <a class="btn btn-outline-warning waves-effect wow fadeInDown" data-wow-delay="0.4s" th:text="#{edit_profile}" th:href="@{/}"></a>
+			                <a class="btn btn-outline-warning waves-effect wow fadeInDown" data-wow-delay="0.4s" th:text="#{edit_profile}" th:href="@{/user/editprofile}"></a>
 		                </div>
 		                <div th:if="${session.role} == 'EMP'" class="d-inline">
 		                	<h5 class="font-up mb-3 white-text wow fadeInDown" data-wow-delay="0.4s" th:text="${session.role} + ' - ' + ${session.login}"></h5>
