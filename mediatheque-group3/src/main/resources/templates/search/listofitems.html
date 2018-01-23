@@ -39,8 +39,10 @@
 						th:text="${item.category.nameCategory} + ' - ' + ${item.typeItem.nameItem}"></div>
 					<div class="card-body">
 						<h4 class="card-title" th:text="${item.title}"></h4>
-						<p class="card-text" th:text="${item.summary}"></p>
-						<p class="card-text" th:text="#{remaining_quantity} + ' : ' + ${item.quantity}"></p>
+						<p class="card-text text-justify" th:text="${item.summary}"></p>
+						<p th:if="${item.numberPages} != 0"  class="card-text mb-0 text-justify" th:text="#{number_pages} + ' : ' + ${item.numberPages}"></p>
+						<p th:if="${item.duration} != 0"  class="card-text mb-0 text-justify" th:text="#{duration} + ' : ' + ${item.duration}"></p>
+						<p class="card-text text-justify" th:text="#{remaining_quantity} + ' : ' + ${item.quantity}"></p>
 						<a th:if="${session.role} == 'USER' AND ${item.quantity} != 0"
 							class="btn btn-default btn-sm" th:text="#{loanbutton}"></a>
 							<a th:if="${session.role} == 'USER' AND ${item.quantity} == 0"
