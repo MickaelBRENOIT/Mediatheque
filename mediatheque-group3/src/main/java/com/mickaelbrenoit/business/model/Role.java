@@ -27,11 +27,6 @@ public class Role implements Serializable {
 	@Size(min = 2, max = 10)
 	private String name;
 	
-	// This field doesn't exist in the database
-    // It is simulated with a SQL query
-	@OneToMany(mappedBy="role", fetch=FetchType.LAZY)
-	private List<User> users = new ArrayList<>(0);
-	
 	public Role() {
 	}
 	
@@ -55,17 +50,11 @@ public class Role implements Serializable {
 		this.name = name;
 	}
 
-	public List<User> getUsers() {
-		return users;
-	}
-
-	public void setUsers(List<User> users) {
-		this.users = users;
-	}
-
 	@Override
 	public String toString() {
-		return "Role [idRole=" + idRole + ", name=" + name + ", users=" + users + "]";
+		return "Role [idRole=" + idRole + ", name=" + name + "]";
 	}
+
+
 
 }

@@ -8,8 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -19,6 +21,7 @@ import javax.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
+@Table(uniqueConstraints={@UniqueConstraint(columnNames={"universalProductCode"})})
 public class Item implements Serializable{
 	
 	@Id
@@ -74,6 +77,21 @@ public class Item implements Serializable{
 	public Item(Long idItem, Long universalProductCode, String title, String summary, Date releaseDate, int quantity,
 			int numberPages, int duration, TypeItem typeItem, Category category) {
 		this.idItem = idItem;
+		this.universalProductCode = universalProductCode;
+		this.title = title;
+		this.summary = summary;
+		this.releaseDate = releaseDate;
+		this.quantity = quantity;
+		this.numberPages = numberPages;
+		this.duration = duration;
+		this.typeItem = typeItem;
+		this.category = category;
+	}
+	
+	
+
+	public Item(Long universalProductCode, String title, String summary, Date releaseDate, int quantity,
+			int numberPages, int duration, TypeItem typeItem, Category category) {
 		this.universalProductCode = universalProductCode;
 		this.title = title;
 		this.summary = summary;

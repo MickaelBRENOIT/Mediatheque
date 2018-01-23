@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Implementation-Title: mediatheque-group3
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: Mikael
+Built-By: e1503304
 Implementation-Vendor-Id: com.mickaelbrenoit
-Build-Jdk: 1.8.0_151
+Build-Jdk: 1.8.0_131
 Implementation-URL: http://projects.spring.io/spring-boot/mediatheque-
  group3/
 Created-By: Maven Integration for Eclipse
