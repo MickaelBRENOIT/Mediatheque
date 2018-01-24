@@ -38,19 +38,19 @@ public class InitDb implements CommandLineRunner{
 	private EntityManager entityManager;
 	
 	@Autowired
-	CategoryService categoryRepository;
+	CategoryService categoryService;
 
 	@Autowired
-	ItemService itemRepository;
+	ItemService itemService;
 	
 	@Autowired
-	RoleService roleRepository;
+	RoleService roleService;
 	
 	@Autowired
-	TypeItemService typeItemRepository;
+	TypeItemService typeItemService;
 	
 	@Autowired
-	UserService userRepository;
+	UserService userService;
 
 	@Override
 	@Transactional
@@ -58,173 +58,178 @@ public class InitDb implements CommandLineRunner{
 
 		
 		//Création des roles
-		Role roleAdmin = roleRepository.findByName("ADMIN");
-		Role roleEmp = roleRepository.findByName("EMP");
-		Role roleUser = roleRepository.findByName("USER");
+		Role roleAdmin = roleService.findByName("ADMIN");
+		Role roleEmp = roleService.findByName("EMP");
+		Role roleUser = roleService.findByName("USER");
 		
 		if(roleAdmin==null) {
 			roleAdmin = new Role("ADMIN");
-			roleRepository.save(roleAdmin);
+			roleService.save(roleAdmin);
 			LOGGER.info("ADMIN role created" + roleAdmin);
 		}
 		
 		
 		if(roleEmp==null) {
 			roleEmp = new Role("EMP");
-			roleRepository.save(roleEmp);
+			roleService.save(roleEmp);
 			LOGGER.info("EMP role created");
 		}
 		
 		if(roleUser==null) {
 			roleUser = new Role("USER");
-			roleRepository.save(roleUser);
+			roleService.save(roleUser);
 			LOGGER.info("ADMIN role created");
 		}
 		
 		
 		//Création des quelques utilisateurs
-		User admin = userRepository.findByLogin("bob");
+		User admin = userService.findByLogin("bob");
 		
-		User emp1 = userRepository.findByLogin("framboise");
-		User emp2 = userRepository.findByLogin("PierreD");
+		User emp1 = userService.findByLogin("framboise");
+		User emp2 = userService.findByLogin("PierreD");
 		
-		User user1 = userRepository.findByLogin("Fraise");
-		User user2 = userRepository.findByLogin("Phoque");
-		User user3 = userRepository.findByLogin("Mirabelle");
+		User user1 = userService.findByLogin("Fraise");
+		User user2 = userService.findByLogin("Phoque");
+		User user3 = userService.findByLogin("Mirabelle");
 		
 		if(admin == null) {
-			admin = new User("bob", PasswordUtils.hashPassword("aaaaaaaa"), "Mickael", "BRENOIT", "brenoit.mickael@gmail.com", roleAdmin);
-			userRepository.save(admin);
+			admin = new User("Mickael", "BRENOIT", "brenoit.mickael@gmail.com", "Bob", "aaaaaaaa", roleAdmin);
+			userService.save(admin);
 		}
 		
 		if(emp1 == null) {
-			emp1 = new User("framboise", PasswordUtils.hashPassword("aaaaaaaa"), "Mickael", "BRENOIT", "brenoit.mickael@gmail.com", roleEmp);
-			userRepository.save(emp1);
+			emp1 = new User("Laure", "SOLEIL", "soleil.laure@gmail.com", "Framboise", "aaaaaaaa", roleEmp);
+			userService.save(emp1);
 		}
 		
-		if(emp1 == null) {
-			emp1 = new User("PierreD", PasswordUtils.hashPassword("aaaaaaaa"), "Pierre", "Dupont", "brenoit.mickael@gmail.com", roleEmp);
-			userRepository.save(emp1);
+		if(emp2 == null) {
+			emp2 = new User("Pierre", "DUPONT", "dupont.pierre@gmail.com", "Poire", "aaaaaaaa", roleEmp);
+			userService.save(emp2);
 		}
 		
 		if(user1 == null) {
-			user1 = new User("Fraise", PasswordUtils.hashPassword("aaaaaaaa"), "Mickael", "BRENOIT", "brenoit.mickael@gmail.com", roleUser);
-			userRepository.save(user1);
+			user1 = new User("Mathieu", "DUCHAMP", "duchamp.mathieu@gmail.com", "Fraise", "aaaaaaaa", roleUser);
+			userService.save(user1);
 		}
 		
 		if(user2 == null) {
-			emp1 = new User("Phoque", PasswordUtils.hashPassword("aaaaaaaa"), "Sylvain", "ALB", "sylalb@gmail.com", roleUser);
-			userRepository.save(emp1);
+			user2 = new User("Sylvain", "ALBASSER", "albasser.sylvain@gmail.com", "Phoque", "aaaaaaaa", roleUser);
+			userService.save(user2);
 		}
 		
 		if(user3 == null) {
-			emp1 = new User("Mirabelle", PasswordUtils.hashPassword("aaaaaaaa"), "Raphael", "SABBAGH", "raphael.sabbagh@gmail.com", roleUser);
-			userRepository.save(emp1);
+			user3 = new User("Raphael", "SABBAGH", "raphael.sabbagh@gmail.com", "Mirabelle", "aaaaaaaa", roleUser);
+			userService.save(user3);
 		}
 		
 		
 		//Création de catégories d'items
-		Category information = categoryRepository.findByNameCategory("Informations");
-		Category historique = categoryRepository.findByNameCategory("Historique");
-		Category informatique = categoryRepository.findByNameCategory("Informatique");
-		Category divertissement = categoryRepository.findByNameCategory("Divertissement");
+		Category information = categoryService.findByNameCategory("Informations");
+		Category historique = categoryService.findByNameCategory("Historique");
+		Category informatique = categoryService.findByNameCategory("Informatique");
+		Category divertissement = categoryService.findByNameCategory("Divertissement");
 		
 		if(information == null) {
 			information = new Category("Informations");
-			categoryRepository.save(information);
+			categoryService.save(information);
 		}
 		if(historique == null) {
 			historique = new Category("Historique");
-			categoryRepository.save(historique);
+			categoryService.save(historique);
 		}
 		if(informatique == null) {
 			informatique = new Category("Informatique");
-			categoryRepository.save(informatique);
+			categoryService.save(informatique);
 		}
 		if(divertissement == null) {
 			divertissement = new Category("Divertissement");
-			categoryRepository.save(divertissement);
+			categoryService.save(divertissement);
 		}
 		
 		
 		//Création de types d'items
-		TypeItem cd = typeItemRepository.findByNameItem("CD");
-		TypeItem dvd = typeItemRepository.findByNameItem("DVD");
-		TypeItem roman = typeItemRepository.findByNameItem("Roman");
+		TypeItem cd = typeItemService.findByNameItem("CD");
+		TypeItem dvd = typeItemService.findByNameItem("DVD");
+		TypeItem roman = typeItemService.findByNameItem("Roman");
 		
 		if(cd == null) {
 			cd = new TypeItem("CD");
-			typeItemRepository.save(cd);
+			typeItemService.save(cd);
 		}
 		if(dvd == null) {
 			dvd = new TypeItem("DVD");
-			typeItemRepository.save(dvd);
+			typeItemService.save(dvd);
 		}
 		if(roman == null) {
 			roman = new TypeItem("Roman");
-			typeItemRepository.save(roman);
+			typeItemService.save(roman);
 		}
 		
 		
 		//Création d'items
-		Item harryPotter = itemRepository.findByUniversalProductCode(100001L);
-		Item seigneurDesAnneaux = itemRepository.findByUniversalProductCode(100002L);
-		Item cinquantesNuancesDeGrey = itemRepository.findByUniversalProductCode(100003L);
+		Item harryPotter = itemService.findByUniversalProductCode(100001L);
+		Item seigneurDesAnneaux = itemService.findByUniversalProductCode(100002L);
+		Item cinquantesNuancesDeGrey = itemService.findByUniversalProductCode(100003L);
 		
-		Item pnl = itemRepository.findByUniversalProductCode(100004L);
-		Item jul = itemRepository.findByUniversalProductCode(100005L);
-		Item hateBreed = itemRepository.findByUniversalProductCode(100006L);
+		Item pnl = itemService.findByUniversalProductCode(100004L);
+		Item jul = itemService.findByUniversalProductCode(100005L);
+		Item hateBreed = itemService.findByUniversalProductCode(100006L);
 		
-		Item bethleem = itemRepository.findByUniversalProductCode(100007L);
-		Item laMain = itemRepository.findByUniversalProductCode(100008L);
-		Item leRougeEtLeNoir = itemRepository.findByUniversalProductCode(100009L);
+		Item bethleem = itemService.findByUniversalProductCode(100007L);
+		Item laMain = itemService.findByUniversalProductCode(100008L);
+		Item leRougeEtLeNoir = itemService.findByUniversalProductCode(100009L);
+		
+		Item Cplusplus = itemService.findByUniversalProductCode(100010L);
 		
 		if(harryPotter == null) {
 			harryPotter = new Item(100001L, "Harry Potter à l'école des sorciers", "Harry Potter a 10 ans découvre qu'il est un sorcier. Suivez ses aventures au sein de Poudlard, l'école des sorciers.", new Date(2018,01,23), 4,	0, 152, dvd, divertissement);
-			itemRepository.save(harryPotter);
+			itemService.save(harryPotter);
 		}
 		
 		if(seigneurDesAnneaux == null) {
 			seigneurDesAnneaux = new Item(100002L, "Le seigneur des anneaux, la communauté de l'anneau", "L'anneau est en possession de Frodon Saquet de la Comté. Il doit l'emmener au Mordor mais il se cherche des amis avant (il a friendzoné Sam  Gamegie car il manquait d'amis).", new Date(2018,01,23), 3, 0, 228, dvd, divertissement);
-			itemRepository.save(seigneurDesAnneaux);
+			itemService.save(seigneurDesAnneaux);
 		}
 		if(cinquantesNuancesDeGrey == null) {
 			cinquantesNuancesDeGrey = new Item(100003L, "Cinquante nuances de Grey", "Anastasia Steele doit interviewer le richissime homme d'affaires Christian Grey. Elle est bientôt séduite par la personnalité de Grey, mais ce dernier va chercher à la dérouter et lui fait d'étranges propositions.", new Date(2018,01,23), 3, 0, 125, dvd, divertissement);
-			itemRepository.save(cinquantesNuancesDeGrey);
+			itemService.save(cinquantesNuancesDeGrey);
 		}
 		
 		
 		if(pnl == null) {
 			pnl = new Item(100004L, "Dans la légende - PNL", "Ademo et NOS parlent de leurs passé où il visser du taga", new Date(2018,01,23), 3, 0, 67, cd, divertissement);
-			itemRepository.save(pnl);
+			itemService.save(pnl);
 		}
 		
 		if(jul == null) {
 			jul = new Item(100005L, "My World - JUL", "Les rageux vont maigrir.", new Date(2018,01,23), 3, 0, 71, cd, divertissement);
-			itemRepository.save(jul);
+			itemService.save(jul);
 		}
 		
 		if(hateBreed == null) {
 			hateBreed = new Item(100006L, "Supremacy - Hatebreed", "Supremacy est le quatrième  album du groupe de metal américain Hatebreed.", new Date(2018,01,23), 3, 0, 71, cd, divertissement);
-			itemRepository.save(hateBreed);
+			itemService.save(hateBreed);
 		}
 		
 		if(bethleem == null) {
 			bethleem = new Item(100007L, "Bethleem - Chateaubriand", "Le classique de chateaubriand", new Date(2018,01,23), 6, 252, 0, roman, divertissement);
-			itemRepository.save(bethleem);
+			itemService.save(bethleem);
 		}
 		
 		if(laMain == null) {
 			laMain = new Item(100008L, "La Main - Guy de Maupassant", "Un roman fantastique écrit par un auteur classique de la littérature française?", new Date(2018,01,23), 6, 178, 0, roman, divertissement);
-			itemRepository.save(laMain);
+			itemService.save(laMain);
 		}
 		
 		if(leRougeEtLeNoir == null) {
-			bethleem = new Item(100009L, "Le rouge et le noir - Stendhal", "La base des bases.", new Date(2018,01,23), 6, 322, 0, roman, divertissement);
-			itemRepository.save(bethleem);
+			leRougeEtLeNoir = new Item(100009L, "Le rouge et le noir - Stendhal", "La base des bases.", new Date(2018,01,23), 6, 322, 0, roman, divertissement);
+			itemService.save(leRougeEtLeNoir);
 		}
 		
-		
+		if(Cplusplus == null) {
+			Cplusplus = new Item(100010L, "The C++ Programming Language", "The C++ Programming Language est le premier livre d'informatique présentant le langage C++, écrit par l'inventeur du langage, Bjarne Stroustrup. La première édition est parue en 1985", new Date(1985, 01, 01), 0, 1363, 0, roman, informatique);
+			itemService.save(Cplusplus);
+		}
 		
 	}
 
