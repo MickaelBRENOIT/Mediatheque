@@ -35,12 +35,13 @@
 							<tr th:each="loan : ${loans}">
 								<td th:text="${loan.startDate}"></td>
 								<td th:text="${loan.endDate}"></td>
-								<td th:text="${loan.givenBackDate}"></td>
+								<td th:if="${loan.givenBackDate} == null" th:text="#{notgivenback}"></td>
+								<td th:if="${loan.givenBackDate} != null" th:text="#{givenbackthe} + ' : ' + ${loan.givenBackDate}"></td>
 								<td th:text="${loan.user.login}"></td>
 								<td th:text="${loan.item.title}"></td>
 								<td>
-									<a th:if="${loan.givenBackDate} == null" class="btn btn-secondary btn-sm" th:href="@{/emp/givenbackloan(id=${loan.idLoan})}" th:text="#{givenback}"></a>
-									<a class="btn btn-danger btn-sm" th:href="@{'/emp/deleteloan/' + ${loan.idLoan}}" th:text="#{delete}"></a>
+									<a th:if="${loan.givenBackDate} == null" class="btn btn-secondary btn-sm" th:href="@{/emp/givenbackloan(idUser=${userId}, idLoan=${loan.idLoan})}" th:text="#{givenback}"></a>
+									<a class="btn btn-danger btn-sm" th:href="@{/emp/deleteloan(idUser=${userId}, idLoan=${loan.idLoan})}" th:text="#{delete}"></a>
 								</td>
 							</tr>
 						</tbody>

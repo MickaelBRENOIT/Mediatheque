@@ -282,4 +282,28 @@ public class EmployeeController {
 		return "redirect:/emp/listloans";
 	}
 	
+	@RequestMapping(value = "/givenbackloan", method = RequestMethod.GET)
+	public String givenBackLoan(@RequestParam("idUser") String idUser, @RequestParam("idLoan") String idLoan, Model model) {
+		
+		Loan loan = loanService.findById(Long.parseLong(idLoan));
+		Item item = itemService.findById(loan.getItem().getIdItem());
+		
+		item.setQuantity(item.getQuantity()+1);
+		loan.setGivenBackDate(Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+		
+		itemService.save(item);
+		loanService.save(loan);
+		
+		model.addAttribute("id", Long.parseLong(idUser));
+		
+		return "redirect:/emp/listloans";
+	}
+	
+	@RequestMapping(value = "/deleteloan", method = RequestMethod.GET)
+	public String deleteLoan(@RequestParam("idUser") String idUser, @RequestParam("idLoan") String idLoan, Model model) {
+		loanService.delete(Long.parseLong(idLoan));
+		model.addAttribute("id", Long.parseLong(idUser));
+		return "redirect:/emp/listloans";
+	}
+	
 }
