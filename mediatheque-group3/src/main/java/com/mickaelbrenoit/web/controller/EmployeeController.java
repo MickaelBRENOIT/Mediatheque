@@ -1,5 +1,7 @@
 package com.mickaelbrenoit.web.controller;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 
@@ -18,9 +20,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mickaelbrenoit.business.model.Item;
+import com.mickaelbrenoit.business.model.Loan;
 import com.mickaelbrenoit.business.model.User;
 import com.mickaelbrenoit.business.service.CategoryService;
 import com.mickaelbrenoit.business.service.ItemService;
+import com.mickaelbrenoit.business.service.LoanService;
 import com.mickaelbrenoit.business.service.RoleService;
 import com.mickaelbrenoit.business.service.TypeItemService;
 import com.mickaelbrenoit.business.service.UserService;
@@ -222,6 +226,60 @@ public class EmployeeController {
 	public String deleteItem(@PathVariable("id") Long id) {
 		itemService.delete(id);
 		return "redirect:/emp/listitems";
+	}
+	
+	/**
+	 * 
+	 * 
+	 * 			END --- ITEM PART
+	 * 
+	 * 
+	 **/
+	
+	/**
+	 * 
+	 * 
+	 * 			BEGIN --- LOAN PART
+	 * 
+	 * 
+	 * */
+	
+	@Autowired
+	private LoanService loanService;
+	
+	@RequestMapping(value="/listloans", method = RequestMethod.GET)
+	public String listAllLoansByUserId(@RequestParam("id") Long id, Model model) {
+		model.addAttribute("loans", loanService.findAllLoansByUserId(id));
+		model.addAttribute("userId", id);
+		return "emp/listofloans";
+	}
+	
+	@RequestMapping(value="/addloan", method = RequestMethod.GET)
+	public String addLoanForUser(@RequestParam("id") Long id, Model model) {
+		model.addAttribute("items", itemService.findAll());
+		model.addAttribute("userId", id);
+		return "search/listofitems";
+	}
+	
+	@RequestMapping(value="/addloanuser", method = RequestMethod.GET)
+	public String addLoanForAnUser(@RequestParam("idUser") String idUser, @RequestParam("idItem") String idItem, Model model) {
+		
+		User user = userService.findById(Long.parseLong(idUser));
+		Item item = itemService.findById(Long.parseLong(idItem));
+		
+		item.setQuantity(item.getQuantity()-1);
+		itemService.save(item);
+		
+		Date startDate = Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant());
+		Date endDate = Date.from(LocalDate.now().plusMonths(2).atStartOfDay(ZoneId.systemDefault()).toInstant());
+		
+		Loan loan = new Loan(startDate, endDate, null, user, item);
+		
+		loanService.save(loan);
+		
+		model.addAttribute("id", user.getIdUser());
+		
+		return "redirect:/emp/listloans";
 	}
 	
 }

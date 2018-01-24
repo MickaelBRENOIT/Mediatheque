@@ -46,6 +46,7 @@
 								<td th:text="${user.login}"></td>
 								<td th:text="${user.email}"></td>
 								<td>
+									<a class="btn btn-default btn-sm" th:href="@{/emp/listloans(id=${user.idUser})}" th:text="#{loanuser}"></a>
 									<a class="btn btn-warning btn-sm" th:href="@{/emp/edituser(id=${user.idUser})}" th:text="#{modify}"></a>
 									<a class="btn btn-danger btn-sm" th:href="@{'/emp/deleteuser/' + ${user.idUser}}" th:text="#{delete}"></a>
 								</td>

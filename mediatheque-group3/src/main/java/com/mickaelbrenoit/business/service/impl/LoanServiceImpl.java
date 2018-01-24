@@ -35,4 +35,9 @@ public class LoanServiceImpl implements LoanService{
 		return loanRepository.findOne(id);
 	}
 
+	@Override
+	public List<Loan> findAllLoansByUserId(Long idUser) {
+		return (List<Loan>) loanRepository.findAllLoansByUserId(idUser);
+	}
+
 }

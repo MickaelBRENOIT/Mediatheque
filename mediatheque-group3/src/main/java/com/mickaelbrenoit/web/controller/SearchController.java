@@ -39,9 +39,12 @@ public class SearchController {
 	}
 	
 	@RequestMapping(value = "/itemsbycategory", method = RequestMethod.GET)
-	public String searchItemsByCategory(@RequestParam(value="select-category", required=true) String searchName, Model model) {
+	public String searchItemsByCategory(@RequestParam(value="select-category", required=true) String searchName, @RequestParam(value="userId", required=false, defaultValue="") String userId, Model model) {
 //		model.addAttribute("categories", categoryService.findAll());
 		model.addAttribute("items", itemService.findAllByCategoryName(searchName));
+		if(!userId.equals("")) {
+			model.addAttribute("userId", userId);
+		}
 		return "search/listofitems";
 	}
 	

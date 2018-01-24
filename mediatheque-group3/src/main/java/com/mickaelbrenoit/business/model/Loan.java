@@ -31,6 +31,10 @@ public class Loan implements Serializable{
 	@NotNull
 	private Date endDate;
 	
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat (pattern="yyyy-MM-dd")
+	private Date givenBackDate;
+	
 	@NotNull
 	@ManyToOne
 	private User user;
@@ -42,9 +46,10 @@ public class Loan implements Serializable{
 	public Loan() {
 	}
 
-	public Loan(Date startDate, Date endDate, User user, Item item) {
+	public Loan(Date startDate, Date endDate, Date givenBackDate, User user, Item item) {
 		this.startDate = startDate;
 		this.endDate = endDate;
+		this.givenBackDate = givenBackDate;
 		this.user = user;
 		this.item = item;
 	}
@@ -73,6 +78,14 @@ public class Loan implements Serializable{
 		this.endDate = endDate;
 	}
 
+	public Date getGivenBackDate() {
+		return givenBackDate;
+	}
+
+	public void setGivenBackDate(Date givenBackDate) {
+		this.givenBackDate = givenBackDate;
+	}
+
 	public User getUser() {
 		return user;
 	}
@@ -91,8 +104,8 @@ public class Loan implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Loan [idLoan=" + idLoan + ", startDate=" + startDate + ", endDate=" + endDate + ", user=" + user
-				+ ", item=" + item + "]";
+		return "Loan [idLoan=" + idLoan + ", startDate=" + startDate + ", endDate=" + endDate + ", givenBackDate="
+				+ givenBackDate + ", user=" + user + ", item=" + item + "]";
 	}
 	
 

@@ -85,8 +85,8 @@ public class InitDb implements CommandLineRunner{
 		//Création des quelques utilisateurs
 		User admin = userService.findByLogin("bob");
 		
-		User emp1 = userService.findByLogin("framboise");
-		User emp2 = userService.findByLogin("PierreD");
+		User emp1 = userService.findByLogin("Framboise");
+		User emp2 = userService.findByLogin("Poire");
 		
 		User user1 = userService.findByLogin("Fraise");
 		User user2 = userService.findByLogin("Phoque");

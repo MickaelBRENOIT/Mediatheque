@@ -15,6 +15,7 @@
 
 		<form th:action="@{/search/itemsbycategory}"
 			class="justify-content-center" method="get" width="100%">
+			<input type="hidden" name="userId" id="userId" th:value="${userId}" />
 
 			<!-- 				<select class="form-control mb-0" id="select-category" name="select-category"> -->
 			<!-- 					<option value="" disabled="disabled" selected="true" th:text="#{choosecategory}"></option> -->
@@ -43,9 +44,9 @@
 						<p th:if="${item.numberPages} != 0"  class="card-text mb-0 text-justify" th:text="#{number_pages} + ' : ' + ${item.numberPages}"></p>
 						<p th:if="${item.duration} != 0"  class="card-text mb-0 text-justify" th:text="#{duration} + ' : ' + ${item.duration}"></p>
 						<p class="card-text text-justify" th:text="#{remaining_quantity} + ' : ' + ${item.quantity}"></p>
-						<a th:if="${session.role} == 'EMP' AND ${item.quantity} != 0"
-							class="btn btn-default btn-sm" th:text="#{loanbutton}"></a>
-							<a th:if="${session.role} == 'EMP' AND ${item.quantity} == 0"
+						<a th:if="${session.role} == 'EMP' AND ${item.quantity} != 0 AND ${userId} != null"
+							class="btn btn-default btn-sm" th:text="#{loanbutton}" th:href="@{/emp/addloanuser(idUser=${userId}, idItem=${item.idItem})}"></a>
+							<a th:if="${session.role} == 'EMP' AND ${item.quantity} == 0 AND ${userId} != null"
 							class="btn btn-danger btn-sm" th:text="#{loanbuttoncancel}"></a>
 						<a
 							th:if="${session.login} == null" class="btn btn-default btn-sm"

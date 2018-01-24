@@ -9,4 +9,5 @@ public interface LoanService {
     void delete(Long id);
     List<Loan> findAll();
     Loan findById(Long id);
+    List<Loan> findAllLoansByUserId(Long idUser);
 }
