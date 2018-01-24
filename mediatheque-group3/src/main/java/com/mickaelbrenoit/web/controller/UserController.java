@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mickaelbrenoit.business.model.User;
+import com.mickaelbrenoit.business.service.LoanService;
 import com.mickaelbrenoit.business.service.RoleService;
 import com.mickaelbrenoit.business.service.UserService;
 import com.mickaelbrenoit.utils.PasswordUtils;
@@ -30,6 +31,8 @@ public class UserController {
 	private UserService userService;
 	@Autowired
 	private RoleService roleService;
+	@Autowired
+	private LoanService loanService;
 	
 	@RequestMapping(value="/editprofile", method = RequestMethod.GET)
 	public String editProfile(Model model, HttpServletRequest request, HttpSession session) {
@@ -64,6 +67,13 @@ public class UserController {
 		userService.save(user);
 		
 		return "redirect:/logout";
+	}
+	
+	@RequestMapping(value="/myloans", method = RequestMethod.GET)
+	public String usersLoans(Model model, HttpServletRequest request, HttpSession session) {
+		session = request.getSession(false);
+		model.addAttribute("loans", loanService.findAllLoansByUserId((Long) session.getAttribute("iduser")));
+		return "user/myloans";
 	}
 
 }

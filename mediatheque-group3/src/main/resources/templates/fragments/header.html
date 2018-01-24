@@ -18,8 +18,8 @@
 
 			<ul class="navbar-nav mr-auto">
 
-				<li class="nav-item active"><a class="nav-link" th:href="@{/}"
-					th:text="#{home}"><span class="sr-only">(current)</span></a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/}"
+					th:text="#{home}"><span class="sr-only"></span></a></li>
 				<!--                     <li class="nav-item"> -->
 				<!--                         <a class="nav-link" href="#">Profile</a> -->
 				<!--                     </li> -->
@@ -40,7 +40,7 @@
 				</a>
 					<div class="dropdown-menu"
 						aria-labelledby="navbarDropdownMenuLink">
-						<a class="dropdown-item" th:href="@{/}" th:text="#{loans}"></a> 
+						<a class="dropdown-item" th:href="@{/user/myloans}" th:text="#{loans}"></a> 
 						<a class="dropdown-item" th:href="@{/user/editprofile}" th:text="#{edit_profile}"></a>
 						<a class="dropdown-item" th:href="@{/logout}" th:text="#{logout}"></a>
 					</div>
