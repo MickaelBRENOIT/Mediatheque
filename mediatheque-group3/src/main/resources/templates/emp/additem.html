@@ -50,7 +50,7 @@
 					<div class="form-inline">
 						<div class="md-form">
 							<i class="fa fa-calendar fa-lg prefix white-text"></i> <input type="text"
-								th:field="*{releaseDate}" class="form-control text-white" placeholder="yyyy/MM/dd" /> <label
+								th:field="*{releaseDate}" class="form-control text-white" placeholder="yyyy-MM-dd" /> <label
 								for="orangeForm-name" th:text="#{item_releasedate}" class="text-white"></label>
 							<p th:if="${#fields.hasErrors('releaseDate')}" th:errors="*{releaseDate}"
 								th:text="#{error_item_releasedate}" class="text-danger"></p>

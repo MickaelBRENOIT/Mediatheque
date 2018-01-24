@@ -43,7 +43,7 @@ public class Item implements Serializable{
 	private String summary;
 	
 	@Temporal(TemporalType.DATE)
-	@DateTimeFormat (pattern="yyyy/MM/dd")
+	@DateTimeFormat (pattern="yyyy-MM-dd")
 	@NotNull
 	private Date releaseDate;
 	
