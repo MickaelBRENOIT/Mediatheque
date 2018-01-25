@@ -64,6 +64,9 @@ public class Item implements Serializable{
 	private int duration;
 	
 	@NotNull
+	private boolean active;
+	
+	@NotNull
 	@ManyToOne
 	private TypeItem typeItem;
 	
@@ -87,11 +90,9 @@ public class Item implements Serializable{
 		this.typeItem = typeItem;
 		this.category = category;
 	}
-	
-	
 
 	public Item(Long universalProductCode, String title, String summary, Date releaseDate, int quantity,
-			int numberPages, int duration, TypeItem typeItem, Category category) {
+			int numberPages, int duration, boolean active, TypeItem typeItem, Category category) {
 		this.universalProductCode = universalProductCode;
 		this.title = title;
 		this.summary = summary;
@@ -99,6 +100,7 @@ public class Item implements Serializable{
 		this.quantity = quantity;
 		this.numberPages = numberPages;
 		this.duration = duration;
+		this.active = active;
 		this.typeItem = typeItem;
 		this.category = category;
 	}
@@ -167,6 +169,14 @@ public class Item implements Serializable{
 		this.duration = duration;
 	}
 
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
 	public TypeItem getTypeItem() {
 		return typeItem;
 	}
@@ -187,6 +197,7 @@ public class Item implements Serializable{
 	public String toString() {
 		return "Item [idItem=" + idItem + ", universalProductCode=" + universalProductCode + ", title=" + title
 				+ ", summary=" + summary + ", releaseDate=" + releaseDate + ", quantity=" + quantity + ", numberPages="
-				+ numberPages + ", duration=" + duration + ", typeItem=" + typeItem + ", category=" + category + "]";
+				+ numberPages + ", duration=" + duration + ", active=" + active + ", typeItem=" + typeItem
+				+ ", category=" + category + "]";
 	}
 }

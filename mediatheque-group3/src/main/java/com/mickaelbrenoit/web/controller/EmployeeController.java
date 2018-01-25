@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.mickaelbrenoit.business.model.Item;
 import com.mickaelbrenoit.business.model.Loan;
 import com.mickaelbrenoit.business.model.User;
+import com.mickaelbrenoit.business.repository.ItemRepository;
 import com.mickaelbrenoit.business.service.CategoryService;
 import com.mickaelbrenoit.business.service.ItemService;
 import com.mickaelbrenoit.business.service.LoanService;
@@ -220,6 +221,16 @@ public class EmployeeController {
 		itemService.save(item);
 		
 		return "redirect:/emp/listitems";
+	}
+	
+	@RequestMapping(value = "/itemstate", method = RequestMethod.GET)
+	public String changeItemState(@RequestParam("idItem") String idItem, Model model) {
+		
+		Item item = itemService.findById(Long.parseLong(idItem));
+		item.setActive(!item.isActive());
+		itemService.save(item);
+		
+		return "redirect:/search";
 	}
 	
 	@RequestMapping(value = "/deleteitem/{id}", method = RequestMethod.GET)

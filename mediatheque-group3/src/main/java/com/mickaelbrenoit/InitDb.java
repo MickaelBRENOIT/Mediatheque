@@ -17,17 +17,11 @@ import com.mickaelbrenoit.business.model.Item;
 import com.mickaelbrenoit.business.model.Role;
 import com.mickaelbrenoit.business.model.TypeItem;
 import com.mickaelbrenoit.business.model.User;
-import com.mickaelbrenoit.business.repository.CategoryRepository;
-import com.mickaelbrenoit.business.repository.ItemRepository;
-import com.mickaelbrenoit.business.repository.RoleRepository;
-import com.mickaelbrenoit.business.repository.TypeItemRepository;
-import com.mickaelbrenoit.business.repository.UserRepository;
 import com.mickaelbrenoit.business.service.CategoryService;
 import com.mickaelbrenoit.business.service.ItemService;
 import com.mickaelbrenoit.business.service.RoleService;
 import com.mickaelbrenoit.business.service.TypeItemService;
 import com.mickaelbrenoit.business.service.UserService;
-import com.mickaelbrenoit.utils.PasswordUtils;
 
 @Component
 public class InitDb implements CommandLineRunner{
@@ -180,55 +174,61 @@ public class InitDb implements CommandLineRunner{
 		Item leRougeEtLeNoir = itemService.findByUniversalProductCode(100009L);
 		
 		Item Cplusplus = itemService.findByUniversalProductCode(100010L);
+		Item metasploit = itemService.findByUniversalProductCode(100011L);
 		
 		if(harryPotter == null) {
-			harryPotter = new Item(100001L, "Harry Potter à l'école des sorciers", "Harry Potter a 10 ans découvre qu'il est un sorcier. Suivez ses aventures au sein de Poudlard, l'école des sorciers.", new Date(2018,01,23), 4,	0, 152, dvd, divertissement);
+			harryPotter = new Item(100001L, "Harry Potter à l'école des sorciers", "Harry Potter a 10 ans découvre qu'il est un sorcier. Suivez ses aventures au sein de Poudlard, l'école des sorciers.", new Date(2018,01,23), 4,	0, 152, true, dvd, divertissement);
 			itemService.save(harryPotter);
 		}
 		
 		if(seigneurDesAnneaux == null) {
-			seigneurDesAnneaux = new Item(100002L, "Le seigneur des anneaux, la communauté de l'anneau", "L'anneau est en possession de Frodon Saquet de la Comté. Il doit l'emmener au Mordor mais il se cherche des amis avant (il a friendzoné Sam  Gamegie car il manquait d'amis).", new Date(2018,01,23), 3, 0, 228, dvd, divertissement);
+			seigneurDesAnneaux = new Item(100002L, "Le seigneur des anneaux, la communauté de l'anneau", "L'anneau est en possession de Frodon Saquet de la Comté. Il doit l'emmener au Mordor mais il se cherche des amis avant (il a friendzoné Sam  Gamegie car il manquait d'amis).", new Date(2018,01,23), 3, 0, 228, true, dvd, divertissement);
 			itemService.save(seigneurDesAnneaux);
 		}
 		if(cinquantesNuancesDeGrey == null) {
-			cinquantesNuancesDeGrey = new Item(100003L, "Cinquante nuances de Grey", "Anastasia Steele doit interviewer le richissime homme d'affaires Christian Grey. Elle est bientôt séduite par la personnalité de Grey, mais ce dernier va chercher à la dérouter et lui fait d'étranges propositions.", new Date(2018,01,23), 3, 0, 125, dvd, divertissement);
+			cinquantesNuancesDeGrey = new Item(100003L, "Cinquante nuances de Grey", "Anastasia Steele doit interviewer le richissime homme d'affaires Christian Grey. Elle est bientôt séduite par la personnalité de Grey, mais ce dernier va chercher à la dérouter et lui fait d'étranges propositions.", new Date(2018,01,23), 3, 0, 125, true, dvd, divertissement);
 			itemService.save(cinquantesNuancesDeGrey);
 		}
 		
 		
 		if(pnl == null) {
-			pnl = new Item(100004L, "Dans la légende - PNL", "Ademo et NOS parlent de leurs passé où il visser du taga", new Date(2018,01,23), 3, 0, 67, cd, divertissement);
+			pnl = new Item(100004L, "Dans la légende - PNL", "Ademo et NOS parlent de leurs passé où il visser du taga", new Date(2018,01,23), 3, 0, 67, true, cd, divertissement);
 			itemService.save(pnl);
 		}
 		
 		if(jul == null) {
-			jul = new Item(100005L, "My World - JUL", "Les rageux vont maigrir.", new Date(2018,01,23), 3, 0, 71, cd, divertissement);
+			jul = new Item(100005L, "My World - JUL", "Les rageux vont maigrir.", new Date(2018,01,23), 3, 0, 71, true, cd, divertissement);
 			itemService.save(jul);
 		}
 		
 		if(hateBreed == null) {
-			hateBreed = new Item(100006L, "Supremacy - Hatebreed", "Supremacy est le quatrième  album du groupe de metal américain Hatebreed.", new Date(2018,01,23), 3, 0, 71, cd, divertissement);
+			hateBreed = new Item(100006L, "Supremacy - Hatebreed", "Supremacy est le quatrième  album du groupe de metal américain Hatebreed.", new Date(2018,01,23), 3, 0, 71, true, cd, divertissement);
 			itemService.save(hateBreed);
 		}
 		
 		if(bethleem == null) {
-			bethleem = new Item(100007L, "Bethleem - Chateaubriand", "Le classique de chateaubriand", new Date(2018,01,23), 6, 252, 0, roman, divertissement);
+			bethleem = new Item(100007L, "Bethleem - Chateaubriand", "Le classique de chateaubriand", new Date(2018,01,23), 6, 252, 0, true, roman, divertissement);
 			itemService.save(bethleem);
 		}
 		
 		if(laMain == null) {
-			laMain = new Item(100008L, "La Main - Guy de Maupassant", "Un roman fantastique écrit par un auteur classique de la littérature française?", new Date(2018,01,23), 6, 178, 0, roman, divertissement);
+			laMain = new Item(100008L, "La Main - Guy de Maupassant", "Un roman fantastique écrit par un auteur classique de la littérature française?", new Date(2018,01,23), 6, 178, 0, true, roman, divertissement);
 			itemService.save(laMain);
 		}
 		
 		if(leRougeEtLeNoir == null) {
-			leRougeEtLeNoir = new Item(100009L, "Le rouge et le noir - Stendhal", "La base des bases.", new Date(2018,01,23), 6, 322, 0, roman, divertissement);
+			leRougeEtLeNoir = new Item(100009L, "Le rouge et le noir - Stendhal", "La base des bases.", new Date(2018,01,23), 6, 322, 0, true, roman, divertissement);
 			itemService.save(leRougeEtLeNoir);
 		}
 		
 		if(Cplusplus == null) {
-			Cplusplus = new Item(100010L, "The C++ Programming Language", "The C++ Programming Language est le premier livre d'informatique présentant le langage C++, écrit par l'inventeur du langage, Bjarne Stroustrup. La première édition est parue en 1985", new Date(1985, 01, 01), 0, 1363, 0, roman, informatique);
+			Cplusplus = new Item(100010L, "The C++ Programming Language", "The C++ Programming Language est le premier livre d'informatique présentant le langage C++, écrit par l'inventeur du langage, Bjarne Stroustrup. La première édition est parue en 1985", new Date(1985, 01, 01), 0, 1363, 0, true, roman, informatique);
 			itemService.save(Cplusplus);
+		}
+		
+		if(metasploit == null) {
+			metasploit = new Item(100011L, "Hacking, sécurité et tests d'intrusion avec Metasploit", "Le framework Metasploit, qui permet de découvrir et d'exploiter les failles de sécurité, est l’un des outils les plus utilisés par les professionnels de la sécurité informatique.", new Date(2013, 8, 3), 0, 400, 2, false, roman, informatique);
+			itemService.save(metasploit);
 		}
 		
 	}
