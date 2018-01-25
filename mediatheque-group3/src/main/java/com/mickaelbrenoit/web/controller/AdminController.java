@@ -63,6 +63,7 @@ public class AdminController {
         }
 
 		user.setPassword(PasswordUtils.hashPassword(user.getPassword()));
+		user.setActive(true);
 		
 		userService.save(user);
 		
@@ -100,6 +101,14 @@ public class AdminController {
 		
 		userService.save(user);
 		
+		return "redirect:/admin/listemployees";
+	}
+	
+	@RequestMapping(value="/accountstate", method = RequestMethod.GET)
+	public String changeAccountState(@RequestParam("id") Long id, Model model) {
+		User user = userService.findById(id);
+		user.setActive(!user.isActive());
+		userService.save(user);
 		return "redirect:/admin/listemployees";
 	}
 	

@@ -30,15 +30,6 @@
 								<th th:text="#{action}"></th>
 							</tr>
 						</thead>
-<!-- 						<tfoot> -->
-<!-- 							<tr> -->
-<!-- 								<th th:text="#{signup_firstname}"></th> -->
-<!-- 								<th th:text="#{signup_lastname}"></th> -->
-<!-- 								<th th:text="#{signup_login}"></th> -->
-<!-- 								<th th:text="#{signup_email}"></th> -->
-<!-- 								<th th:text="#{action}"></th> -->
-<!-- 							</tr> -->
-<!-- 						</tfoot> -->
 						<tbody>
 							<tr th:each="employee : ${employees}">
 								<td th:text="${employee.firstName}"></td>
@@ -46,6 +37,8 @@
 								<td th:text="${employee.login}"></td>
 								<td th:text="${employee.email}"></td>
 								<td>
+									<a th:if="${employee.active} != true" class="btn btn-success btn-sm" th:href="@{/admin/accountstate(id=${employee.idUser})}" th:text="#{activate}"></a>
+									<a th:if="${employee.active} == true" class="btn btn-danger btn-sm" th:href="@{/admin/accountstate(id=${employee.idUser})}" th:text="#{deactivate}"></a>
 									<a class="btn btn-warning btn-sm" th:href="@{/admin/editemployee(id=${employee.idUser})}" th:text="#{modify}"></a>
 									<a class="btn btn-danger btn-sm" th:href="@{'/admin/deleteemployee/' + ${employee.idUser}}" th:text="#{delete}"></a>
 								</td>

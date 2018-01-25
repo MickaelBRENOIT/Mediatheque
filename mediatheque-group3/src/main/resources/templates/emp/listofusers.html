@@ -30,15 +30,6 @@
 								<th th:text="#{action}"></th>
 							</tr>
 						</thead>
-<!-- 						<tfoot> -->
-<!-- 							<tr> -->
-<!-- 								<th th:text="#{signup_firstname}"></th> -->
-<!-- 								<th th:text="#{signup_lastname}"></th> -->
-<!-- 								<th th:text="#{signup_login}"></th> -->
-<!-- 								<th th:text="#{signup_email}"></th> -->
-<!-- 								<th th:text="#{action}"></th> -->
-<!-- 							</tr> -->
-<!-- 						</tfoot> -->
 						<tbody>
 							<tr th:each="user : ${users}">
 								<td th:text="${user.firstName}"></td>
@@ -46,6 +37,8 @@
 								<td th:text="${user.login}"></td>
 								<td th:text="${user.email}"></td>
 								<td>
+									<a th:if="${user.active} != true" class="btn btn-success btn-sm" th:href="@{/emp/accountstate(id=${user.idUser})}" th:text="#{activate}"></a>
+									<a th:if="${user.active} == true" class="btn btn-danger btn-sm" th:href="@{/emp/accountstate(id=${user.idUser})}" th:text="#{deactivate}"></a>
 									<a class="btn btn-default btn-sm" th:href="@{/emp/listloans(id=${user.idUser})}" th:text="#{loanuser}"></a>
 									<a class="btn btn-warning btn-sm" th:href="@{/emp/edituser(id=${user.idUser})}" th:text="#{modify}"></a>
 									<a class="btn btn-danger btn-sm" th:href="@{'/emp/deleteuser/' + ${user.idUser}}" th:text="#{delete}"></a>

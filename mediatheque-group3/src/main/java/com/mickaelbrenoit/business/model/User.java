@@ -44,6 +44,9 @@ public class User implements Serializable {
     @NotNull
     @Size(min=8, max=60)
     private String password;
+    
+    @NotNull
+    private boolean active;
 
     // This field exists in the DB
     // Person contains a foreign key to role
@@ -61,12 +64,14 @@ public class User implements Serializable {
 		this.email = email;
 	}
 
-	public User(String firstName, String lastName, String email, String login, String password, Role role) {
+	public User(String firstName, String lastName, String email, String login, String password, boolean active,
+			Role role) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.login = login;
 		this.password = PasswordUtils.hashPassword(password);
+		this.active = active;
 		this.role = role;
 	}
 
@@ -118,7 +123,15 @@ public class User implements Serializable {
 		this.password = password;
 	}
 
-    public Role getRole() {
+    public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
+	public Role getRole() {
 		return role;
 	}
 
@@ -129,7 +142,7 @@ public class User implements Serializable {
 	@Override
 	public String toString() {
 		return "User [idUser=" + idUser + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", login=" + login + ", password=" + password + ", role=" + role + "]";
+				+ ", login=" + login + ", password=" + password + ", active=" + active + ", role=" + role + "]";
 	}
 	
 }

@@ -50,11 +50,13 @@ public class ConnexionController {
 		
 		if(loginexists != null) {
 			if(PasswordUtils.decodePassword(user.getPassword(), loginexists.getPassword())) {
-				session = request.getSession(true);
-				session.setAttribute("iduser", loginexists.getIdUser());
-				session.setAttribute("login", loginexists.getLogin());
-				session.setAttribute("role", loginexists.getRole().getName());
-				return "redirect:/";
+				if(loginexists.isActive()) {
+					session = request.getSession(true);
+					session.setAttribute("iduser", loginexists.getIdUser());
+					session.setAttribute("login", loginexists.getLogin());
+					session.setAttribute("role", loginexists.getRole().getName());
+					return "redirect:/";
+				}
 			}			
 		}
 		

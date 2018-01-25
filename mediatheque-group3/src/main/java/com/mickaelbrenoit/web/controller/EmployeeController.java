@@ -80,19 +80,19 @@ public class EmployeeController {
         }
 
 		user.setPassword(PasswordUtils.hashPassword(user.getPassword()));
+		user.setActive(true);
 		
 		userService.save(user);
 		
 		return "redirect:/emp/listusers";
 	}
 	
-	@RequestMapping(value="/edituser", method = RequestMethod.GET)
-	public String editEmployee(@RequestParam("id") Long id, Model model) {
+	@RequestMapping(value="/accountstate", method = RequestMethod.GET)
+	public String changeAccountState(@RequestParam("id") Long id, Model model) {
 		User user = userService.findById(id);
-		model.addAttribute("user", user);
-		model.addAttribute("currentlogin", user.getLogin());
-		model.addAttribute("role", roleService.findByName("USER"));
-		return "emp/edituser";
+		user.setActive(!user.isActive());
+		userService.save(user);
+		return "redirect:/emp/listusers";
 	}
 	
 	@RequestMapping(value="/edituser", method = RequestMethod.POST)
@@ -118,6 +118,15 @@ public class EmployeeController {
 		userService.save(user);
 		
 		return "redirect:/emp/listusers";
+	}
+	
+	@RequestMapping(value="/edituser", method = RequestMethod.GET)
+	public String editEmployee(@RequestParam("id") Long id, Model model) {
+		User user = userService.findById(id);
+		model.addAttribute("user", user);
+		model.addAttribute("currentlogin", user.getLogin());
+		model.addAttribute("role", roleService.findByName("USER"));
+		return "emp/edituser";
 	}
 	
 	@RequestMapping(value = "/deleteuser/{id}", method = RequestMethod.GET)

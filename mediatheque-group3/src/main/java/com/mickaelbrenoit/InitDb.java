@@ -81,39 +81,51 @@ public class InitDb implements CommandLineRunner{
 		
 		User emp1 = userService.findByLogin("Framboise");
 		User emp2 = userService.findByLogin("Poire");
+		User emp3 = userService.findByLogin("Pomme");
 		
 		User user1 = userService.findByLogin("Fraise");
 		User user2 = userService.findByLogin("Phoque");
 		User user3 = userService.findByLogin("Mirabelle");
+		User user4 = userService.findByLogin("Tomate");
 		
 		if(admin == null) {
-			admin = new User("Mickael", "BRENOIT", "brenoit.mickael@gmail.com", "Bob", "aaaaaaaa", roleAdmin);
+			admin = new User("Mickael", "BRENOIT", "brenoit.mickael@gmail.com", "Bob", "aaaaaaaa", true, roleAdmin);
 			userService.save(admin);
 		}
 		
 		if(emp1 == null) {
-			emp1 = new User("Laure", "SOLEIL", "soleil.laure@gmail.com", "Framboise", "aaaaaaaa", roleEmp);
+			emp1 = new User("Laure", "SOLEIL", "soleil.laure@gmail.com", "Framboise", "aaaaaaaa", true, roleEmp);
 			userService.save(emp1);
 		}
 		
 		if(emp2 == null) {
-			emp2 = new User("Pierre", "DUPONT", "dupont.pierre@gmail.com", "Poire", "aaaaaaaa", roleEmp);
+			emp2 = new User("Pierre", "DUPONT", "dupont.pierre@gmail.com", "Poire", "aaaaaaaa", true, roleEmp);
 			userService.save(emp2);
 		}
 		
+		if(emp3 == null) {
+			emp3 = new User("Mathieu", "MEYER", "mathieu.meyer@gmail.com", "Pomme", "aaaaaaaa", false, roleEmp);
+			userService.save(emp3);
+		}
+		
 		if(user1 == null) {
-			user1 = new User("Mathieu", "DUCHAMP", "duchamp.mathieu@gmail.com", "Fraise", "aaaaaaaa", roleUser);
+			user1 = new User("Mathieu", "DUCHAMP", "duchamp.mathieu@gmail.com", "Fraise", "aaaaaaaa", true, roleUser);
 			userService.save(user1);
 		}
 		
 		if(user2 == null) {
-			user2 = new User("Sylvain", "ALBASSER", "albasser.sylvain@gmail.com", "Phoque", "aaaaaaaa", roleUser);
+			user2 = new User("Sylvain", "ALBASSER", "albasser.sylvain@gmail.com", "Phoque", "aaaaaaaa", true, roleUser);
 			userService.save(user2);
 		}
 		
 		if(user3 == null) {
-			user3 = new User("Raphael", "SABBAGH", "raphael.sabbagh@gmail.com", "Mirabelle", "aaaaaaaa", roleUser);
+			user3 = new User("Raphael", "SABBAGH", "raphael.sabbagh@gmail.com", "Mirabelle", "aaaaaaaa", true, roleUser);
 			userService.save(user3);
+		}
+		
+		if(user4 == null) {
+			user4 = new User("Laurent", "Lune", "laurent.lune@gmail.com", "Tomate", "aaaaaaaa", false, roleUser);
+			userService.save(user4);
 		}
 		
 		
