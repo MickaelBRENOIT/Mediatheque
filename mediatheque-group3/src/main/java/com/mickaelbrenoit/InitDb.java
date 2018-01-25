@@ -156,19 +156,19 @@ public class InitDb implements CommandLineRunner{
 		//Création de types d'items
 		TypeItem cd = typeItemService.findByNameItem("CD");
 		TypeItem dvd = typeItemService.findByNameItem("DVD");
-		TypeItem roman = typeItemService.findByNameItem("Roman");
+		TypeItem livre = typeItemService.findByNameItem("Livre");
 		
 		if(cd == null) {
-			cd = new TypeItem("CD");
+			cd = new TypeItem("CD", 3);
 			typeItemService.save(cd);
 		}
 		if(dvd == null) {
-			dvd = new TypeItem("DVD");
+			dvd = new TypeItem("DVD", 4);
 			typeItemService.save(dvd);
 		}
-		if(roman == null) {
-			roman = new TypeItem("Roman");
-			typeItemService.save(roman);
+		if(livre == null) {
+			livre = new TypeItem("Livre", 2);
+			typeItemService.save(livre);
 		}
 		
 		
@@ -219,27 +219,27 @@ public class InitDb implements CommandLineRunner{
 		}
 		
 		if(bethleem == null) {
-			bethleem = new Item(100007L, "Bethleem - Chateaubriand", "Le classique de chateaubriand", new Date(2018,01,23), 6, 252, 0, true, roman, divertissement);
+			bethleem = new Item(100007L, "Bethleem - Chateaubriand", "Le classique de chateaubriand", new Date(2018,01,23), 6, 252, 0, true, livre, divertissement);
 			itemService.save(bethleem);
 		}
 		
 		if(laMain == null) {
-			laMain = new Item(100008L, "La Main - Guy de Maupassant", "Un roman fantastique écrit par un auteur classique de la littérature française?", new Date(2018,01,23), 6, 178, 0, true, roman, divertissement);
+			laMain = new Item(100008L, "La Main - Guy de Maupassant", "Un roman fantastique écrit par un auteur classique de la littérature française?", new Date(2018,01,23), 6, 178, 0, true, livre, divertissement);
 			itemService.save(laMain);
 		}
 		
 		if(leRougeEtLeNoir == null) {
-			leRougeEtLeNoir = new Item(100009L, "Le rouge et le noir - Stendhal", "La base des bases.", new Date(2018,01,23), 6, 322, 0, true, roman, divertissement);
+			leRougeEtLeNoir = new Item(100009L, "Le rouge et le noir - Stendhal", "La base des bases.", new Date(2018,01,23), 6, 322, 0, true, livre, divertissement);
 			itemService.save(leRougeEtLeNoir);
 		}
 		
 		if(Cplusplus == null) {
-			Cplusplus = new Item(100010L, "The C++ Programming Language", "The C++ Programming Language est le premier livre d'informatique présentant le langage C++, écrit par l'inventeur du langage, Bjarne Stroustrup. La première édition est parue en 1985", new Date(1985, 01, 01), 0, 1363, 0, true, roman, informatique);
+			Cplusplus = new Item(100010L, "The C++ Programming Language", "The C++ Programming Language est le premier livre d'informatique présentant le langage C++, écrit par l'inventeur du langage, Bjarne Stroustrup. La première édition est parue en 1985", new Date(1985, 01, 01), 0, 1363, 0, true, livre, informatique);
 			itemService.save(Cplusplus);
 		}
 		
 		if(metasploit == null) {
-			metasploit = new Item(100011L, "Hacking, sécurité et tests d'intrusion avec Metasploit", "Le framework Metasploit, qui permet de découvrir et d'exploiter les failles de sécurité, est l’un des outils les plus utilisés par les professionnels de la sécurité informatique.", new Date(2013, 8, 3), 0, 400, 2, false, roman, informatique);
+			metasploit = new Item(100011L, "Hacking, sécurité et tests d'intrusion avec Metasploit", "Le framework Metasploit, qui permet de découvrir et d'exploiter les failles de sécurité, est l’un des outils les plus utilisés par les professionnels de la sécurité informatique.", new Date(2013, 8, 3), 0, 400, 2, false, livre, informatique);
 			itemService.save(metasploit);
 		}
 		

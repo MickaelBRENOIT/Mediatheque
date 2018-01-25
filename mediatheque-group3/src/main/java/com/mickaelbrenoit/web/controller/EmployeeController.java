@@ -291,7 +291,7 @@ public class EmployeeController {
 		itemService.save(item);
 		
 		Date startDate = Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant());
-		Date endDate = Date.from(LocalDate.now().plusMonths(2).atStartOfDay(ZoneId.systemDefault()).toInstant());
+		Date endDate = Date.from(LocalDate.now().plusMonths(item.getTypeItem().getDurationLoan()).atStartOfDay(ZoneId.systemDefault()).toInstant());
 		
 		Loan loan = new Loan(startDate, endDate, null, user, item);
 		

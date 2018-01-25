@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -22,12 +23,25 @@ public class TypeItem implements Serializable {
 	@NotNull
 	@Size(min = 2, max = 30)
 	private String nameItem;
+	
+	@NotNull
+	@Digits(fraction = 0, integer = 2)
+	private int durationLoan;
 
 	public TypeItem() {
 	}
 
-	public TypeItem(String nameItem) {
+	public TypeItem(String nameItem, int durationLoan) {
 		this.nameItem = nameItem;
+		this.durationLoan = durationLoan;
+	}
+
+	public int getDurationLoan() {
+		return durationLoan;
+	}
+
+	public void setDurationLoan(int durationLoan) {
+		this.durationLoan = durationLoan;
 	}
 
 	public Long getIdTypeItem() {
@@ -48,6 +62,6 @@ public class TypeItem implements Serializable {
 
 	@Override
 	public String toString() {
-		return "TypeItem [idTypeItem=" + idTypeItem + ", nameItem=" + nameItem + "]";
+		return "TypeItem [idTypeItem=" + idTypeItem + ", nameItem=" + nameItem + ", durationLoan=" + durationLoan + "]";
 	}
 }
