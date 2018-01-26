@@ -1,5 +1,6 @@
 package com.mickaelbrenoit;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.EntityManager;
@@ -189,57 +190,57 @@ public class InitDb implements CommandLineRunner{
 		Item metasploit = itemService.findByUniversalProductCode(100011L);
 		
 		if(harryPotter == null) {
-			harryPotter = new Item(100001L, "Harry Potter à l'école des sorciers", "Harry Potter a 10 ans découvre qu'il est un sorcier. Suivez ses aventures au sein de Poudlard, l'école des sorciers.", new Date(2018,01,23), 4,	0, 152, true, dvd, divertissement);
+			harryPotter = new Item(100001L, "Harry Potter à l'école des sorciers", "Harry Potter a 10 ans découvre qu'il est un sorcier. Suivez ses aventures au sein de Poudlard, l'école des sorciers.", new SimpleDateFormat("yyyy-MM-dd").parse("1994-05-30"), 4, 0, 152, true, dvd, divertissement);
 			itemService.save(harryPotter);
 		}
 		
 		if(seigneurDesAnneaux == null) {
-			seigneurDesAnneaux = new Item(100002L, "Le seigneur des anneaux, la communauté de l'anneau", "L'anneau est en possession de Frodon Saquet de la Comté. Il doit l'emmener au Mordor mais il se cherche des amis avant (il a friendzoné Sam  Gamegie car il manquait d'amis).", new Date(2018,01,23), 3, 0, 228, true, dvd, divertissement);
+			seigneurDesAnneaux = new Item(100002L, "Le seigneur des anneaux, la communauté de l'anneau", "L'anneau est en possession de Frodon Saquet de la Comté. Il doit l'emmener au Mordor mais il se cherche des amis avant (il a friendzoné Sam  Gamegie car il manquait d'amis).", new SimpleDateFormat("yyyy-MM-dd").parse("1988-06-15"), 3, 0, 228, true, dvd, divertissement);
 			itemService.save(seigneurDesAnneaux);
 		}
 		if(cinquantesNuancesDeGrey == null) {
-			cinquantesNuancesDeGrey = new Item(100003L, "Cinquante nuances de Grey", "Anastasia Steele doit interviewer le richissime homme d'affaires Christian Grey. Elle est bientôt séduite par la personnalité de Grey, mais ce dernier va chercher à la dérouter et lui fait d'étranges propositions.", new Date(2018,01,23), 3, 0, 125, true, dvd, divertissement);
+			cinquantesNuancesDeGrey = new Item(100003L, "Cinquante nuances de Grey", "Anastasia Steele doit interviewer le richissime homme d'affaires Christian Grey. Elle est bientôt séduite par la personnalité de Grey, mais ce dernier va chercher à la dérouter et lui fait d'étranges propositions.", new SimpleDateFormat("yyyy-MM-dd").parse("1976-07-27"), 3, 0, 125, true, dvd, divertissement);
 			itemService.save(cinquantesNuancesDeGrey);
 		}
 		
 		
 		if(pnl == null) {
-			pnl = new Item(100004L, "Dans la légende - PNL", "Ademo et NOS parlent de leurs passé où il visser du taga", new Date(2018,01,23), 3, 0, 67, true, cd, divertissement);
+			pnl = new Item(100004L, "Dans la légende - PNL", "Ademo et NOS parlent de leurs passé où il visser du taga", new SimpleDateFormat("yyyy-MM-dd").parse("2016-04-22"), 3, 0, 67, true, cd, divertissement);
 			itemService.save(pnl);
 		}
 		
 		if(jul == null) {
-			jul = new Item(100005L, "My World - JUL", "Les rageux vont maigrir.", new Date(2018,01,23), 3, 0, 71, true, cd, divertissement);
+			jul = new Item(100005L, "My World - JUL", "Les rageux vont maigrir.", new SimpleDateFormat("yyyy-MM-dd").parse("2015-02-12"), 3, 0, 71, true, cd, divertissement);
 			itemService.save(jul);
 		}
 		
 		if(hateBreed == null) {
-			hateBreed = new Item(100006L, "Supremacy - Hatebreed", "Supremacy est le quatrième  album du groupe de metal américain Hatebreed.", new Date(2018,01,23), 3, 0, 71, true, cd, divertissement);
+			hateBreed = new Item(100006L, "Supremacy - Hatebreed", "Supremacy est le quatrième  album du groupe de metal américain Hatebreed.", new SimpleDateFormat("yyyy-MM-dd").parse("1989-11-23"), 3, 0, 71, true, cd, divertissement);
 			itemService.save(hateBreed);
 		}
 		
 		if(bethleem == null) {
-			bethleem = new Item(100007L, "Bethleem - Chateaubriand", "Le classique de chateaubriand", new Date(2018,01,23), 6, 252, 0, true, livre, divertissement);
+			bethleem = new Item(100007L, "Bethleem - Chateaubriand", "Le classique de chateaubriand", new SimpleDateFormat("yyyy-MM-dd").parse("1883-07-09"), 6, 252, 0, true, livre, divertissement);
 			itemService.save(bethleem);
 		}
 		
 		if(laMain == null) {
-			laMain = new Item(100008L, "La Main - Guy de Maupassant", "Un roman fantastique écrit par un auteur classique de la littérature française?", new Date(2018,01,23), 6, 178, 0, true, livre, divertissement);
+			laMain = new Item(100008L, "La Main - Guy de Maupassant", "Un roman fantastique écrit par un auteur classique de la littérature française?", new SimpleDateFormat("yyyy-MM-dd").parse("1817-02-13"), 6, 178, 0, true, livre, divertissement);
 			itemService.save(laMain);
 		}
 		
 		if(leRougeEtLeNoir == null) {
-			leRougeEtLeNoir = new Item(100009L, "Le rouge et le noir - Stendhal", "La base des bases.", new Date(2018,01,23), 6, 322, 0, true, livre, divertissement);
+			leRougeEtLeNoir = new Item(100009L, "Le rouge et le noir - Stendhal", "La base des bases.", new SimpleDateFormat("yyyy-MM-dd").parse("1778-01-22"), 6, 322, 0, true, livre, divertissement);
 			itemService.save(leRougeEtLeNoir);
 		}
 		
 		if(Cplusplus == null) {
-			Cplusplus = new Item(100010L, "The C++ Programming Language", "The C++ Programming Language est le premier livre d'informatique présentant le langage C++, écrit par l'inventeur du langage, Bjarne Stroustrup. La première édition est parue en 1985", new Date(1985, 01, 01), 0, 1363, 0, true, livre, informatique);
+			Cplusplus = new Item(100010L, "The C++ Programming Language", "The C++ Programming Language est le premier livre d'informatique présentant le langage C++, écrit par l'inventeur du langage, Bjarne Stroustrup. La première édition est parue en 1985", new SimpleDateFormat("yyyy-MM-dd").parse("1985-06-17"), 0, 1363, 0, true, livre, informatique);
 			itemService.save(Cplusplus);
 		}
 		
 		if(metasploit == null) {
-			metasploit = new Item(100011L, "Hacking, sécurité et tests d'intrusion avec Metasploit", "Le framework Metasploit, qui permet de découvrir et d'exploiter les failles de sécurité, est l’un des outils les plus utilisés par les professionnels de la sécurité informatique.", new Date(2013, 8, 3), 0, 400, 2, false, livre, informatique);
+			metasploit = new Item(100011L, "Hacking, sécurité et tests d'intrusion avec Metasploit", "Le framework Metasploit, qui permet de découvrir et d'exploiter les failles de sécurité, est l’un des outils les plus utilisés par les professionnels de la sécurité informatique.", new SimpleDateFormat("yyyy-MM-dd").parse("2002-09-10"), 0, 400, 2, false, livre, informatique);
 			itemService.save(metasploit);
 		}
 		
