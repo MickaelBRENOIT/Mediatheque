@@ -20,17 +20,17 @@
 					<input type="hidden" th:field="*{idItem}" />
 					<input type="hidden" id="currentupc" name="currentupc" th:value="${currentupc}" />
 					<div class="form-inline">
-						<div class="md-form">
+						<div class="md-form form-sm">
 							<i class="fa fa-pencil fa-lg prefix white-text"></i> <input type="number"
 								th:field="*{universalProductCode}" class="form-control text-white"/> <label
 								for="orangeForm-name" th:text="#{item_upc}" class="text-white"></label>
 							<p th:if="${#fields.hasErrors('universalProductCode')}"
 								th:errors="*{universalProductCode}" th:text="#{error_item_upc}"
-								class="text-danger"></p>
+								class="text-danger pr-1"></p>
 							<p th:if="${upcalreadyexists}"
-								th:text="#{error_item_upc_exists}" class="text-danger"></p>
+								th:text="#{error_item_upc_exists}" class="text-danger pr-1"></p>
 						</div>
-						<div class="md-form">
+						<div class="md-form form-sm">
 							<i class="fa fa-pencil fa-lg prefix white-text"></i> <input type="text"
 								th:field="*{title}" class="form-control text-white" /> <label
 								for="orangeForm-name" th:text="#{item_title}" class="text-white"></label>
@@ -39,9 +39,9 @@
 								class="text-danger"></p>
 						</div>
 					</div>
-					<div class="md-form">
+					<div class="md-form form-sm">
 						<i class="fa fa-pencil fa-lg prefix white-text"></i> <textarea type="text"
-							th:field="*{summary}" class="md-textarea text-white" style="height: 70px" length="250"></textarea> <label
+							th:field="*{summary}" class="md-textarea text-white" style="height: 50px" length="250"></textarea> <label
 							for="orangeForm-name" th:text="#{item_summary}" class="text-white"></label>
 						<p th:if="${#fields.hasErrors('summary')}"
 							th:errors="*{summary}" th:text="#{error_item_summary}"
@@ -49,14 +49,14 @@
 					</div>
 <!-- 					th:text="${#dates.format(standardDate, 'dd-MM-yyyy')}" -->
 					<div class="form-inline">
-						<div class="md-form">
+						<div class="md-form form-sm">
 							<i class="fa fa-calendar fa-lg prefix white-text"></i> <input type="text"
 								th:field="*{releaseDate}" class="form-control text-white" placeholder="yyyy-MM-dd" /> <label
 								for="orangeForm-name" th:text="#{item_releasedate}" class="text-white"></label>
 							<p th:if="${#fields.hasErrors('releaseDate')}" th:errors="*{releaseDate}"
-								th:text="#{error_item_releasedate}" class="text-danger"></p>
+								th:text="#{error_item_releasedate}" class="text-danger pr-1"></p>
 						</div>
-						<div class="md-form">
+						<div class="md-form form-sm">
 							<i class="fa fa-pencil fa-lg prefix white-text"></i> <input
 								type="text" th:field="*{quantity}" class="form-control text-white"/> <label
 								for="orangeForm-email" th:text="#{item_quantity}" class="text-white"></label>
@@ -68,14 +68,14 @@
 					<!-- BEGIN === form inline one or another -->
 					
 					<div class="form-inline">
-						<div class="md-form">
+						<div class="md-form form-sm">
 							<i class="fa fa-pencil fa-lg prefix white-text"></i> <input
 								type="text" th:field="*{numberPages}" class="form-control text-white"/> <label
 								for="orangeForm-email" th:text="#{item_numberpages}" class="text-white"></label>
 							<p th:if="${#fields.hasErrors('numberPages')}" th:errors="*{numberPages}"
-								th:text="#{error_item_numberpages}" class="text-danger"></p>
+								th:text="#{error_item_numberpages}" class="text-danger pr-1"></p>
 						</div>
-						<div class="md-form">
+						<div class="md-form form-sm">
 							<i class="fa fa-pencil fa-lg prefix white-text"></i> <input
 								type="text" th:field="*{duration}" class="form-control text-white"/> <label
 								for="orangeForm-email" th:text="#{item_duration}" class="text-white"></label>
@@ -95,7 +95,7 @@
 								<label th:text="#{item_typeitem}" class="text-white ml-4"></label>
 							</td>
 							<td>
-								<select class="w-100 custom-select" th:field="*{typeItem}">
+								<select class="w-100" th:field="*{typeItem}">
 								    <option value="" disabled="disabled" selected="true" th:text="#{chooseitem}"></option>
 								    <option th:each="ti : ${typeitems}" 
 					    					th:value="${ti.idTypeItem}"
@@ -112,7 +112,7 @@
 								<label th:text="#{item_category}" class="text-white ml-4"></label>
 							</td>
 							<td>
-								<select class="w-100 custom-select" th:field="*{category}">
+								<select class="w-100" th:field="*{category}">
 								    <option value="" disabled="disabled" selected="true" th:text="#{choosecategory}"></option>
 								    <option th:each="cat : ${categories}" 
 					    					th:value="${cat.idCategory}"
@@ -129,9 +129,9 @@
 					<!-- END === selects -->
 
 						<div class="form-inline text-center mt-4">
-							<button type="submit" class="btn btn-outline-primary waves-effect wow fadeInDown mr-auto"
+							<button type="submit" class="btn btn-sm btn-outline-primary waves-effect wow fadeInDown mr-auto"
 							th:text="#{edititem}"></button>
-							<a class="btn btn-outline-danger waves-effect wow fadeInDown"
+							<a class="btn btn-sm btn-outline-danger waves-effect wow fadeInDown"
 							th:text="#{cancel}" th:href="@{/emp/listitems}"></a>
 						</div>
 				</form>

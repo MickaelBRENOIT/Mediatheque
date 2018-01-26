@@ -20,7 +20,7 @@
 
 					<input type="hidden" th:field="*{idUser}" />
 					<input type="hidden" id="currentlogin" name="currentlogin" th:value="${currentlogin}" />
-					<div class="md-form">
+					<div class="md-form form-sm">
 						<i class="fa fa-user prefix white-text"></i> <input type="text"
 							th:field="*{firstName}" class="form-control text-white" /> <label
 							for="orangeForm-name" th:text="#{signup_firstname}" class="text-white"></label>
@@ -28,7 +28,7 @@
 							th:errors="*{firstName}" th:text="#{error_signup_firstname}"
 							class="text-danger"></p>
 					</div>
-					<div class="md-form">
+					<div class="md-form form-sm">
 						<i class="fa fa-user prefix white-text"></i> <input type="text"
 							th:field="*{lastName}" class="form-control text-white" /> <label
 							for="orangeForm-name" th:text="#{signup_lastname}" class="text-white"></label>
@@ -36,7 +36,7 @@
 							th:errors="*{lastName}" th:text="#{error_signup_lastname}"
 							class="text-danger"></p>
 					</div>
-					<div class="md-form">
+					<div class="md-form form-sm">
 						<i class="fa fa-user prefix white-text"></i> <input type="text"
 							th:field="*{login}" class="form-control text-white" /> <label
 							for="orangeForm-name" th:text="#{signup_login}" class="text-white"></label>
@@ -45,7 +45,7 @@
 						<p th:if="${loginalreadyexists}"
 							th:text="#{error_signup_login_exists}" class="text-danger"></p>
 					</div>
-					<div class="md-form">
+					<div class="md-form form-sm">
 						<i class="fa fa-envelope prefix white-text"></i> <input
 							type="text" th:field="*{email}" class="form-control text-white" /> <label
 							for="orangeForm-email" th:text="#{signup_email}" class="text-white"></label>
@@ -53,7 +53,7 @@
 							th:text="#{error_signup_email}" class="text-danger"></p>
 					</div>
 
-					<div class="md-form">
+					<div class="md-form form-sm">
 						<i class="fa fa-lock prefix white-text"></i> <input
 							type="password" th:field="*{password}" class="form-control text-white" />
 						<label for="orangeForm-pass" th:text="#{signup_password}" class="text-white"></label>
@@ -63,9 +63,9 @@
 					</div>
 
 					<div class="form-inline text-center">
-						<button type="submit" class="btn btn-outline-primary waves-effect wow fadeInDown mr-auto"
+						<button type="submit" class="btn btn-sm btn-outline-primary waves-effect wow fadeInDown mr-auto"
 							th:text="#{modify_title}"></button>
-						<a class="btn btn-outline-danger waves-effect wow fadeInDown"
+						<a class="btn btn-sm btn-outline-danger waves-effect wow fadeInDown"
 							th:text="#{cancel}" th:href="@{/emp/listusers}"></a>
 					</div>
 					<input type="hidden" id="role" name="role"
