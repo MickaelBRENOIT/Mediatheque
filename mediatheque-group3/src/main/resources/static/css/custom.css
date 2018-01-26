@@ -30,6 +30,10 @@ color: #fff !important;
     background-size: cover;
 }
 
+#bg-black {
+	background-color: #2E2E2E;
+}
+
 h1 {
     letter-spacing: 8px;
 }
@@ -84,6 +88,7 @@ select {
 
 .easyPaginateNav a {
 	padding:5px;
+	color: #b2dfdb;
 }
 
 .easyPaginateNav a.current {

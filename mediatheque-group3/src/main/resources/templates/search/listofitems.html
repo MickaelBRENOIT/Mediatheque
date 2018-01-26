@@ -11,125 +11,127 @@
 
 	<div th:replace="fragments/header"></div>
 
-	<div class="container pt-5 mt-5 mb-5">
+	<div id="bg-black">
 
-		<form th:action="@{/search/itemsbycategory}"
-			class="justify-content-center" method="get" width="100%">
-			<input type="hidden" name="userId" id="userId" th:value="${userId}" />
+		<div class="container pt-5 mt-5 mb-5">
 
-			<!-- 				<select class="form-control mb-0" id="select-category" name="select-category"> -->
-			<!-- 					<option value="" disabled="disabled" selected="true" th:text="#{choosecategory}"></option> -->
-			<!-- 					<option th:each="cat : ${categories}" th:value="${cat.nameCategory}" -->
-			<!-- 						th:text="${cat.nameCategory}"></option> -->
-			<!-- 				</select> -->
-			<div class="form-inline w-100 text-center">
-				<div class="md-form w-100">
-					<i class="fa fa-pencil prefix"></i> <input type="text"
-						name="select-category" class="form-control" /> <label for=""
-						th:text="#{enter_name_category}"></label>
-					<button type="submit" class="btn btn-secondary"
-						th:text="#{searchbutton}"></button>
+			<form th:action="@{/search/itemsbycategory}"
+				class="justify-content-center" method="get" width="100%">
+				<input type="hidden" name="userId" id="userId" th:value="${userId}" />
+
+				<!-- 				<select class="form-control mb-0" id="select-category" name="select-category"> -->
+				<!-- 					<option value="" disabled="disabled" selected="true" th:text="#{choosecategory}"></option> -->
+				<!-- 					<option th:each="cat : ${categories}" th:value="${cat.nameCategory}" -->
+				<!-- 						th:text="${cat.nameCategory}"></option> -->
+				<!-- 				</select> -->
+				<div class="form-inline w-100 text-center">
+					<div class="md-form w-100">
+						<i class="fa fa-pencil prefix white-text"></i> <input type="text"
+							name="select-category" class="form-control white-text" /> <label
+							for="" th:text="#{enter_name_category}" class="white-text"></label>
+						<button type="submit" class="btn btn-secondary"
+							th:text="#{searchbutton}"></button>
+					</div>
 				</div>
+			</form>
+
+			<div class="row justify-content-center">
+
+				<ul id="easyPaginate" class="w-100">
+
+					<li th:each="item : ${items}"
+						th:if="${session.role} != 'EMP' AND ${item.active} == true">
+						<div class="col-md-6 offset-md-3">
+							<div class="card text-center mb-4">
+								<div class="card-header white-text teal lighten-1"
+									th:text="${item.category.nameCategory} + ' - ' + ${item.typeItem.nameItem}"></div>
+								<div class="card-body">
+									<h4 class="card-title" th:text="${item.title}"></h4>
+									<p class="card-text text-justify" th:text="${item.summary}"></p>
+									<p th:if="${item.numberPages} != 0"
+										class="card-text mb-0 text-justify"
+										th:text="#{number_pages} + ' : ' + ${item.numberPages}"></p>
+									<p th:if="${item.duration} != 0"
+										class="card-text mb-0 text-justify"
+										th:text="#{duration} + ' : ' + ${item.duration}"></p>
+									<p class="card-text text-justify"
+										th:text="#{remaining_quantity} + ' : ' + ${item.quantity}"></p>
+									<!-- 						<a -->
+									<!-- 							th:if="${session.login} == null" class="btn btn-default btn-sm" -->
+									<!-- 							th:text="#{signin_title}" th:href="@{/signin}"></a> -->
+								</div>
+								<div class="card-footer text-muted teal lighten-1 white-text">
+									<p class="mb-0" th:text="${item.releaseDate}"></p>
+								</div>
+							</div>
+						</div>
+					</li>
+
+					<li th:each="item : ${items}"
+						th:if="${session.role} == 'EMP' AND ${userId} != null AND ${item.active} == true">
+						<div class="col-md-6 offset-md-3">
+							<div class="card text-center mb-4">
+								<div class="card-header white-text teal lighten-1"
+									th:text="${item.category.nameCategory} + ' - ' + ${item.typeItem.nameItem}"></div>
+								<div class="card-body">
+									<h4 class="card-title" th:text="${item.title}"></h4>
+									<p class="card-text text-justify" th:text="${item.summary}"></p>
+									<p th:if="${item.numberPages} != 0"
+										class="card-text mb-0 text-justify"
+										th:text="#{number_pages} + ' : ' + ${item.numberPages}"></p>
+									<p th:if="${item.duration} != 0"
+										class="card-text mb-0 text-justify"
+										th:text="#{duration} + ' : ' + ${item.duration}"></p>
+									<p class="card-text text-justify"
+										th:text="#{remaining_quantity} + ' : ' + ${item.quantity}"></p>
+									<a th:if="${item.quantity} != 0" class="btn btn-info btn-sm"
+										th:text="#{loanbutton}"
+										th:href="@{/emp/addloanuser(idUser=${userId}, idItem=${item.idItem})}"></a>
+									<a th:if="${item.quantity} == 0" class="btn btn-danger btn-sm"
+										th:text="#{loanbuttoncancel}"></a>
+								</div>
+								<div class="card-footer text-muted teal lighten-1 white-text">
+									<p class="mb-0" th:text="${item.releaseDate}"></p>
+								</div>
+							</div>
+						</div>
+					</li>
+
+					<li th:each="item : ${items}"
+						th:if="${session.role} == 'EMP' AND ${userId} == null">
+						<div class="col-md-6 offset-md-3">
+							<div class="card text-center mb-4">
+								<div class="card-header teal lighten-1 white-text"
+									th:text="${item.category.nameCategory} + ' - ' + ${item.typeItem.nameItem}"></div>
+								<div class="card-body">
+									<h4 class="card-title" th:text="${item.title}"></h4>
+									<p class="card-text text-justify" th:text="${item.summary}"></p>
+									<p th:if="${item.numberPages} != 0"
+										class="card-text mb-0 text-justify"
+										th:text="#{number_pages} + ' : ' + ${item.numberPages}"></p>
+									<p th:if="${item.duration} != 0"
+										class="card-text mb-0 text-justify"
+										th:text="#{duration} + ' : ' + ${item.duration}"></p>
+									<p class="card-text text-justify"
+										th:text="#{remaining_quantity} + ' : ' + ${item.quantity}"></p>
+									<a th:if="${item.active} == true" class="btn btn-danger btn-sm"
+										th:text="#{deactivate}"
+										th:href="@{/emp/itemstate(idItem=${item.idItem})}"></a> <a
+										th:if="${item.active} != true" class="btn btn-success btn-sm"
+										th:text="#{activate}"
+										th:href="@{/emp/itemstate(idItem=${item.idItem})}"></a>
+								</div>
+								<div class="card-footer text-muted teal lighten-1 white-text">
+									<p class="mb-0" th:text="${item.releaseDate}"></p>
+								</div>
+							</div>
+						</div>
+					</li>
+
+				</ul>
 			</div>
-		</form>
 
-		<div class="row justify-content-center">
-		
-			<ul id="easyPaginate" class="w-100">
-
-			<li th:each="item : ${items}" th:if="${session.role} != 'EMP' AND ${item.active} == true">
-				<div class="col-md-6 offset-md-3">
-					<div class="card text-center mb-4">
-						<div class="card-header stylish-color-dark white-text"
-							th:text="${item.category.nameCategory} + ' - ' + ${item.typeItem.nameItem}"></div>
-						<div class="card-body">
-							<h4 class="card-title" th:text="${item.title}"></h4>
-							<p class="card-text text-justify" th:text="${item.summary}"></p>
-							<p th:if="${item.numberPages} != 0"
-								class="card-text mb-0 text-justify"
-								th:text="#{number_pages} + ' : ' + ${item.numberPages}"></p>
-							<p th:if="${item.duration} != 0"
-								class="card-text mb-0 text-justify"
-								th:text="#{duration} + ' : ' + ${item.duration}"></p>
-							<p class="card-text text-justify"
-								th:text="#{remaining_quantity} + ' : ' + ${item.quantity}"></p>
-							<!-- 						<a -->
-							<!-- 							th:if="${session.login} == null" class="btn btn-default btn-sm" -->
-							<!-- 							th:text="#{signin_title}" th:href="@{/signin}"></a> -->
-						</div>
-						<div class="card-footer text-muted stylish-color-dark white-text">
-							<p class="mb-0" th:text="${item.releaseDate}"></p>
-						</div>
-					</div>
-				</div>
-			</li>
-
-			<li th:each="item : ${items}" th:if="${session.role} == 'EMP' AND ${userId} != null AND ${item.active} == true">
-				<div class="col-md-4">
-					<div class="col-md-6 offset-md-3">
-						<div class="card-header stylish-color-dark white-text"
-							th:text="${item.category.nameCategory} + ' - ' + ${item.typeItem.nameItem}"></div>
-						<div class="card-body">
-							<h4 class="card-title" th:text="${item.title}"></h4>
-							<p class="card-text text-justify" th:text="${item.summary}"></p>
-							<p th:if="${item.numberPages} != 0"
-								class="card-text mb-0 text-justify"
-								th:text="#{number_pages} + ' : ' + ${item.numberPages}"></p>
-							<p th:if="${item.duration} != 0"
-								class="card-text mb-0 text-justify"
-								th:text="#{duration} + ' : ' + ${item.duration}"></p>
-							<p class="card-text text-justify"
-								th:text="#{remaining_quantity} + ' : ' + ${item.quantity}"></p>
-							<a
-								th:if="${item.quantity} != 0"
-								class="btn btn-default btn-sm" th:text="#{loanbutton}"
-								th:href="@{/emp/addloanuser(idUser=${userId}, idItem=${item.idItem})}"></a>
-							<a
-								th:if="${item.quantity} == 0"
-								class="btn btn-danger btn-sm" th:text="#{loanbuttoncancel}"></a>
-						</div>
-						<div class="card-footer text-muted stylish-color-dark white-text">
-							<p class="mb-0" th:text="${item.releaseDate}"></p>
-						</div>
-					</div>
-				</div>
-			</li>
-			
-			<li th:each="item : ${items}" th:if="${session.role} == 'EMP' AND ${userId} == null">
-				<div class="col-md-6 offset-md-3">
-					<div class="card text-center mb-4">
-						<div class="card-header stylish-color-dark white-text"
-							th:text="${item.category.nameCategory} + ' - ' + ${item.typeItem.nameItem}"></div>
-						<div class="card-body">
-							<h4 class="card-title" th:text="${item.title}"></h4>
-							<p class="card-text text-justify" th:text="${item.summary}"></p>
-							<p th:if="${item.numberPages} != 0"
-								class="card-text mb-0 text-justify"
-								th:text="#{number_pages} + ' : ' + ${item.numberPages}"></p>
-							<p th:if="${item.duration} != 0"
-								class="card-text mb-0 text-justify"
-								th:text="#{duration} + ' : ' + ${item.duration}"></p>
-							<p class="card-text text-justify"
-								th:text="#{remaining_quantity} + ' : ' + ${item.quantity}"></p>
-							<a
-								th:if="${item.active} == true"
-								class="btn btn-danger btn-sm" th:text="#{deactivate}"
-								th:href="@{/emp/itemstate(idItem=${item.idItem})}"></a>
-							<a
-								th:if="${item.active} != true"
-								class="btn btn-success btn-sm" th:text="#{activate}"
-								th:href="@{/emp/itemstate(idItem=${item.idItem})}"></a>
-						</div>
-						<div class="card-footer text-muted stylish-color-dark white-text">
-							<p class="mb-0" th:text="${item.releaseDate}"></p>
-						</div>
-					</div>
-				</div>
-			</li>
-			
-			</ul>
 		</div>
-
 	</div>
 
 
