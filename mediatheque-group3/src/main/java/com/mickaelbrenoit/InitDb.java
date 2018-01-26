@@ -188,6 +188,7 @@ public class InitDb implements CommandLineRunner{
 		
 		Item Cplusplus = itemService.findByUniversalProductCode(100010L);
 		Item metasploit = itemService.findByUniversalProductCode(100011L);
+		Item smartphone = itemService.findByUniversalProductCode(100012L);
 		
 		if(harryPotter == null) {
 			harryPotter = new Item(100001L, "Harry Potter à l'école des sorciers", "Harry Potter a 10 ans découvre qu'il est un sorcier. Suivez ses aventures au sein de Poudlard, l'école des sorciers.", new SimpleDateFormat("yyyy-MM-dd").parse("1994-05-30"), 4, 0, 152, true, dvd, divertissement);
@@ -195,7 +196,7 @@ public class InitDb implements CommandLineRunner{
 		}
 		
 		if(seigneurDesAnneaux == null) {
-			seigneurDesAnneaux = new Item(100002L, "Le seigneur des anneaux, la communauté de l'anneau", "L'anneau est en possession de Frodon Saquet de la Comté. Il doit l'emmener au Mordor mais il se cherche des amis avant (il a friendzoné Sam  Gamegie car il manquait d'amis).", new SimpleDateFormat("yyyy-MM-dd").parse("1988-06-15"), 3, 0, 228, true, dvd, divertissement);
+			seigneurDesAnneaux = new Item(100002L, "Le seigneur des anneaux, la communauté de l'anneau", "L'anneau est en possession de Frodon Saquet de la Comté. Il doit l'emmener au Mordor mais il se cherche des amis avant (il a friendzoné Sam  Gamegie car il manquait d'amis).", new SimpleDateFormat("yyyy-MM-dd").parse("1988-06-15"), 1, 0, 228, true, dvd, divertissement);
 			itemService.save(seigneurDesAnneaux);
 		}
 		if(cinquantesNuancesDeGrey == null) {
@@ -242,6 +243,11 @@ public class InitDb implements CommandLineRunner{
 		if(metasploit == null) {
 			metasploit = new Item(100011L, "Hacking, sécurité et tests d'intrusion avec Metasploit", "Le framework Metasploit, qui permet de découvrir et d'exploiter les failles de sécurité, est l’un des outils les plus utilisés par les professionnels de la sécurité informatique.", new SimpleDateFormat("yyyy-MM-dd").parse("2002-09-10"), 0, 400, 2, false, livre, informatique);
 			itemService.save(metasploit);
+		}
+		
+		if(smartphone == null) {
+			smartphone = new Item(100012L, "Les Smartphones Android Pour les Nuls", "Que vous possédiez un smartphone Android Motorola, HTC, Google Nexus ou Samsung, ce livre va vous apprendre à maîtriser votre nouvel outil sur le bout des doigts.", new SimpleDateFormat("yyyy-MM-dd").parse("2012-12-31"), 5, 348, 0, true, livre, informatique);
+			itemService.save(smartphone);
 		}
 		
 	}
