@@ -44,7 +44,7 @@
 						<div class="col-md-6 offset-md-3">
 							<div class="card text-center mb-4">
 								<div class="card-header white-text teal lighten-1"
-									th:text="${item.category.nameCategory} + ' - ' + ${item.typeItem.nameItem}"></div>
+									th:text="${item.category.nameCategory}"></div>
 								<div class="card-body">
 									<h4 class="card-title" th:text="${item.title}"></h4>
 									<p class="card-text text-justify" th:text="${item.summary}"></p>
@@ -54,6 +54,8 @@
 									<p th:if="${item.duration} != 0"
 										class="card-text mb-0 text-justify"
 										th:text="#{duration} + ' : ' + ${item.duration}"></p>
+									<p class="card-text mb-0 text-justify"
+										th:text="#{type_item} + ' : ' + ${item.typeItem.nameItem}"></p>
 									<p class="card-text text-justify"
 										th:text="#{remaining_quantity} + ' : ' + ${item.quantity}"></p>
 									<!-- 						<a -->
@@ -72,7 +74,7 @@
 						<div class="col-md-6 offset-md-3">
 							<div class="card text-center mb-4">
 								<div class="card-header white-text teal lighten-1"
-									th:text="${item.category.nameCategory} + ' - ' + ${item.typeItem.nameItem}"></div>
+									th:text="${item.category.nameCategory}"></div>
 								<div class="card-body">
 									<h4 class="card-title" th:text="${item.title}"></h4>
 									<p class="card-text text-justify" th:text="${item.summary}"></p>
@@ -82,6 +84,8 @@
 									<p th:if="${item.duration} != 0"
 										class="card-text mb-0 text-justify"
 										th:text="#{duration} + ' : ' + ${item.duration}"></p>
+									<p class="card-text mb-0 text-justify"
+										th:text="#{type_item} + ' : ' + ${item.typeItem.nameItem}"></p>
 									<p class="card-text text-justify"
 										th:text="#{remaining_quantity} + ' : ' + ${item.quantity}"></p>
 									<a th:if="${item.quantity} != 0" class="btn btn-info btn-sm"
@@ -102,7 +106,7 @@
 						<div class="col-md-6 offset-md-3">
 							<div class="card text-center mb-4">
 								<div class="card-header teal lighten-1 white-text"
-									th:text="${item.category.nameCategory} + ' - ' + ${item.typeItem.nameItem}"></div>
+									th:text="${item.category.nameCategory}"></div>
 								<div class="card-body">
 									<h4 class="card-title" th:text="${item.title}"></h4>
 									<p class="card-text text-justify" th:text="${item.summary}"></p>
@@ -112,6 +116,8 @@
 									<p th:if="${item.duration} != 0"
 										class="card-text mb-0 text-justify"
 										th:text="#{duration} + ' : ' + ${item.duration}"></p>
+									<p class="card-text mb-0 text-justify"
+										th:text="#{type_item} + ' : ' + ${item.typeItem.nameItem}"></p>
 									<p class="card-text text-justify"
 										th:text="#{remaining_quantity} + ' : ' + ${item.quantity}"></p>
 									<a th:if="${item.active} == true" class="btn btn-danger btn-sm"
