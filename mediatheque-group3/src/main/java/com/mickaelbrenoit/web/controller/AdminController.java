@@ -35,7 +35,7 @@ public class AdminController {
 
 	/*
 	 * 
-	 * Renvoie la liste de tous les employées
+	 * Renvoie la liste de tous les employés
 	 * 
 	 * */
 	@RequestMapping(value="/listemployees", method = RequestMethod.GET)
@@ -49,7 +49,7 @@ public class AdminController {
 	
 	/*
 	 * 
-	 * Permet d'initialiser la page d'ajout d'un employée avec un objet User
+	 * Permet d'initialiser la page d'ajout d'un employé avec un objet User
 	 * 
 	 * */
 	@RequestMapping(value="/addemployee", method = RequestMethod.GET)
@@ -61,7 +61,7 @@ public class AdminController {
 	
 	/*
 	 * 
-	 * Traitement des données du formulaire d'ajout d'un employée
+	 * Traitement des données du formulaire d'ajout d'un employé
 	 * 
 	 * */
 	@RequestMapping(value="/addemployee", method = RequestMethod.POST)
@@ -87,7 +87,7 @@ public class AdminController {
 	
 	/*
 	 * 
-	 * Initialise le formulaire d'édition d'un employée
+	 * Initialise le formulaire d'édition d'un employé
 	 * 
 	 * */
 	@RequestMapping(value="/editemployee", method = RequestMethod.GET)
@@ -131,7 +131,7 @@ public class AdminController {
 	
 	/*
 	 * 
-	 * Permet de changer l'état du compte d'un employée (Activation ou désactivation)
+	 * Permet de changer l'état du compte d'un employé (Activation ou désactivation)
 	 * 
 	 * */
 	@RequestMapping(value="/accountstate", method = RequestMethod.GET)
@@ -144,7 +144,7 @@ public class AdminController {
 	
 	/*
 	 * 
-	 * Permet de supprimer un employée
+	 * Permet de supprimer un employé
 	 * 
 	 * */
 	@RequestMapping(value = "/deleteemployee/{id}", method = RequestMethod.GET)
