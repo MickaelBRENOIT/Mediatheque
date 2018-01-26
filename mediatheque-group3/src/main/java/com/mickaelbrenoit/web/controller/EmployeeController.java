@@ -50,6 +50,11 @@ public class EmployeeController {
 	 * 
 	 * */
 
+	/*
+	 * 
+	 * Permet d'afficher la liste des utilisateurs du site
+	 * 
+	 * */
 	@RequestMapping(value="/listusers", method = RequestMethod.GET)
 	public String listOfEmployees(Model model) {
 		
@@ -59,6 +64,11 @@ public class EmployeeController {
 		return "emp/listofusers";
 	}
 	
+	/*
+	 * 
+	 * Permet d'initialiser le formulaire d'ajout d'un utilisateur
+	 * 
+	 * */
 	@RequestMapping(value="/adduser", method = RequestMethod.GET)
 	public String addEmployee(Model model) {
 		model.addAttribute("user", new User());
@@ -66,6 +76,11 @@ public class EmployeeController {
 		return "emp/adduser";
 	}
 	
+	/*
+	 * 
+	 * Permet de traiter les informations du formulaire d'ajout d'un utilisateur
+	 * 
+	 * */
 	@RequestMapping(value="/adduser", method = RequestMethod.POST)
 	public String formAddEmployee(@Valid @ModelAttribute User user, BindingResult bindingResult, Model model) {
 		
@@ -87,6 +102,11 @@ public class EmployeeController {
 		return "redirect:/emp/listusers";
 	}
 	
+	/*
+	 * 
+	 * Permet de changer le statut d'un compte utilisateur (Activation/Désactivation)
+	 * 
+	 * */
 	@RequestMapping(value="/accountstate", method = RequestMethod.GET)
 	public String changeAccountState(@RequestParam("id") Long id, Model model) {
 		User user = userService.findById(id);
@@ -95,6 +115,11 @@ public class EmployeeController {
 		return "redirect:/emp/listusers";
 	}
 	
+	/*
+	 * 
+	 * Permet de traiter les informations de l'édition d'un utilisateur
+	 * 
+	 * */
 	@RequestMapping(value="/edituser", method = RequestMethod.POST)
 	public String formEditEmployee(@Valid @ModelAttribute User user, BindingResult bindingResult, @RequestParam(value="currentlogin") String currentLogin, Model model) {
 		
@@ -120,6 +145,11 @@ public class EmployeeController {
 		return "redirect:/emp/listusers";
 	}
 	
+	/*
+	 * 
+	 * Permet d'initiliser l'édition d'un utilisateur
+	 * 
+	 * */
 	@RequestMapping(value="/edituser", method = RequestMethod.GET)
 	public String editEmployee(@RequestParam("id") Long id, Model model) {
 		User user = userService.findById(id);
@@ -129,6 +159,11 @@ public class EmployeeController {
 		return "emp/edituser";
 	}
 	
+	/*
+	 * 
+	 * Permet de supprimer un utilisateur
+	 * 
+	 * */
 	@RequestMapping(value = "/deleteuser/{id}", method = RequestMethod.GET)
 	public String deleteEmployee(@PathVariable("id") Long id) {
 		userService.delete(id);
@@ -159,6 +194,11 @@ public class EmployeeController {
 	@Autowired
 	private CategoryService categoryService;
 	
+	/*
+	 * 
+	 * Permet d'afficher la liste des produits
+	 * 
+	 * */
 	@RequestMapping(value="/listitems", method = RequestMethod.GET)
 	public String listOfItems(Model model) {
 		
@@ -168,6 +208,11 @@ public class EmployeeController {
 		return "emp/listofitems";
 	}
 	
+	/*
+	 * 
+	 * Permet d'initiliser le formulaire d'ajout d'un produit
+	 * 
+	 * */
 	@RequestMapping(value="/additem", method = RequestMethod.GET)
 	public String addItem(Model model) {
 		model.addAttribute("typeitems", typeItemService.findAll());
@@ -176,6 +221,11 @@ public class EmployeeController {
 		return "emp/additem";
 	}
 	
+	/*
+	 * 
+	 * Permet de traiter les informations du formulaire d'ajout du produit
+	 * 
+	 * */
 	@RequestMapping(value="/additem", method = RequestMethod.POST)
 	public String formAddItem(@Valid @ModelAttribute Item item, BindingResult bindingResult, Model model) {
 		
@@ -196,6 +246,11 @@ public class EmployeeController {
 		
 	}
 	
+	/*
+	 * 
+	 * Permet d'initiliser l'édition d'un produit
+	 * 
+	 * */
 	@RequestMapping(value="/edititem", method = RequestMethod.GET)
 	public String editItem(@RequestParam("id") Long id, Model model) {
 		model.addAttribute("typeitems", typeItemService.findAll());
@@ -206,6 +261,11 @@ public class EmployeeController {
 		return "emp/edititem";
 	}
 	
+	/*
+	 * 
+	 * Permet de traiter les informations d'édition d'un produit
+	 * 
+	 * */
 	@RequestMapping(value="/edititem", method = RequestMethod.POST)
 	public String formEditItem(@Valid @ModelAttribute Item item, BindingResult bindingResult, @RequestParam(value="currentupc") Long currentUpc, Model model) {
 		
@@ -232,6 +292,11 @@ public class EmployeeController {
 		return "redirect:/emp/listitems";
 	}
 	
+	/*
+	 * 
+	 * Permet de changer le statut d'un produit (Activation/Désactivation)
+	 * 
+	 * */
 	@RequestMapping(value = "/itemstate", method = RequestMethod.GET)
 	public String changeItemState(@RequestParam("idItem") String idItem, Model model) {
 		
@@ -242,6 +307,11 @@ public class EmployeeController {
 		return "redirect:/search";
 	}
 	
+	/*
+	 * 
+	 * Permet la suppression d'un produit
+	 * 
+	 * */
 	@RequestMapping(value = "/deleteitem/{id}", method = RequestMethod.GET)
 	public String deleteItem(@PathVariable("id") Long id) {
 		itemService.delete(id);
@@ -267,6 +337,11 @@ public class EmployeeController {
 	@Autowired
 	private LoanService loanService;
 	
+	/*
+	 * 
+	 * Permet d'afficher la liste des emprunts
+	 * 
+	 * */
 	@RequestMapping(value="/listloans", method = RequestMethod.GET)
 	public String listAllLoansByUserId(@RequestParam("id") Long id, Model model) {
 		model.addAttribute("loans", loanService.findAllLoansByUserId(id));
@@ -274,6 +349,11 @@ public class EmployeeController {
 		return "emp/listofloans";
 	}
 	
+	/*
+	 * 
+	 * Permet d'initialiser le formulaire d'ajout d'un emprunt
+	 * 
+	 * */
 	@RequestMapping(value="/addloan", method = RequestMethod.GET)
 	public String addLoanForUser(@RequestParam("id") Long id, Model model) {
 		model.addAttribute("items", itemService.findAll());
@@ -281,6 +361,12 @@ public class EmployeeController {
 		return "search/listofitems";
 	}
 	
+	/*
+	 * 
+	 * Permet de traiter l'ajout d'un emprunt à un utilisateur
+	 * On décrémente aussi le nombre de quantité du produit qui a été emprunté
+	 * 
+	 * */
 	@RequestMapping(value="/addloanuser", method = RequestMethod.GET)
 	public String addLoanForAnUser(@RequestParam("idUser") String idUser, @RequestParam("idItem") String idItem, Model model) {
 		
@@ -302,6 +388,12 @@ public class EmployeeController {
 		return "redirect:/emp/listloans";
 	}
 	
+	/*
+	 * 
+	 * Permet de traiter le rendu d'un prêt d'un produit
+	 * On incrémente aussi la quantité du produit qui a été rendu
+	 * 
+	 * */
 	@RequestMapping(value = "/givenbackloan", method = RequestMethod.GET)
 	public String givenBackLoan(@RequestParam("idUser") String idUser, @RequestParam("idLoan") String idLoan, Model model) {
 		
@@ -319,6 +411,11 @@ public class EmployeeController {
 		return "redirect:/emp/listloans";
 	}
 	
+	/*
+	 * 
+	 * Permet de supprimer un emprunt (si nous n'avons plus besoin de le voir apparaître dans l'historique des emprunts)
+	 * 
+	 * */
 	@RequestMapping(value = "/deleteloan", method = RequestMethod.GET)
 	public String deleteLoan(@RequestParam("idUser") String idUser, @RequestParam("idLoan") String idLoan, Model model) {
 		loanService.delete(Long.parseLong(idLoan));

@@ -30,6 +30,11 @@ public class ConnexionController {
 	@Autowired
 	private RoleService roleService;
 	
+	/*
+	 * 
+	 * Initialise le formulaire d'inscription d'un utilisateur
+	 * 
+	 * */
 	@RequestMapping(value="/signup", method = RequestMethod.GET)
 	public String GETSignUp(Model model) {
 		model.addAttribute("user", new User());
@@ -37,12 +42,22 @@ public class ConnexionController {
 		return "signup";
 	}
 	
+	/*
+	 * 
+	 * Permet d'initialiser le formulaire de connexion au site internet
+	 * 
+	 * */
 	@RequestMapping(value="/signin", method = RequestMethod.GET)
 	public String GETSignIn(Model model) {
 		model.addAttribute("user", new User());
 		return "signin";
 	}
 
+	/*
+	 * 
+	 * Permet de traiter la connexion d'une personne, on regarde si son couple login/mdp est bon ainsi que le compte soit activé
+	 * 
+	 * */
 	@RequestMapping(value="/signin/form", method = RequestMethod.POST)
 	public String login(@ModelAttribute User user, Model model, HttpServletRequest request, HttpSession session) {
 		
@@ -66,6 +81,11 @@ public class ConnexionController {
 		
 	}
 	
+	/*
+	 * 
+	 * Permet de traiter les informations du formulaire d'inscription
+	 * 
+	 * */
 	@RequestMapping(value="/signup/form", method = RequestMethod.POST)
 	public String register(@Valid @ModelAttribute User user, BindingResult bindingResult, Model model, HttpServletRequest request, HttpSession session) {
 		
@@ -91,6 +111,11 @@ public class ConnexionController {
 		return "redirect:/";
 	}
 	
+	/*
+	 * 
+	 * La session est vidée lors de la déconnexion de l'utilisateur
+	 * 
+	 * */
 	@RequestMapping(value="/logout")
 	public String logout(HttpServletRequest request, HttpSession session) {
 		session = request.getSession(false);

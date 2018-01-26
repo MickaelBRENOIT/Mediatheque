@@ -34,6 +34,11 @@ public class UserController {
 	@Autowired
 	private LoanService loanService;
 	
+	/*
+	 * 
+	 * Permet d'initialiser le formulaire de l'édition du profil de l'utilisateur connecté
+	 * 
+	 * */
 	@RequestMapping(value="/editprofile", method = RequestMethod.GET)
 	public String editProfile(Model model, HttpServletRequest request, HttpSession session) {
 		session = request.getSession(false);
@@ -44,6 +49,11 @@ public class UserController {
 		return "user/editprofile";
 	}
 	
+	/*
+	 * 
+	 * Permet de traiter les informations de l'édition du profil de l'utilisateur connecté
+	 * 
+	 * */
 	@RequestMapping(value="/editprofile", method = RequestMethod.POST)
 	public String formEditProfile(@Valid @ModelAttribute User user, BindingResult bindingResult, @RequestParam(value="currentlogin") String currentLogin, Model model) {
 		
@@ -69,6 +79,11 @@ public class UserController {
 		return "redirect:/logout";
 	}
 	
+	/*
+	 * 
+	 * Permet de lister tous les emprunts de l'utilisateur connecté
+	 * 
+	 * */
 	@RequestMapping(value="/myloans", method = RequestMethod.GET)
 	public String usersLoans(Model model, HttpServletRequest request, HttpSession session) {
 		session = request.getSession(false);

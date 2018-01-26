@@ -33,6 +33,11 @@ public class AdminController {
 	@Autowired
 	private RoleService roleService;
 
+	/*
+	 * 
+	 * Renvoie la liste de tous les employées
+	 * 
+	 * */
 	@RequestMapping(value="/listemployees", method = RequestMethod.GET)
 	public String listOfEmployees(Model model) {
 		
@@ -42,6 +47,11 @@ public class AdminController {
 		return "admin/listofemployees";
 	}
 	
+	/*
+	 * 
+	 * Permet d'initialiser la page d'ajout d'un employée avec un objet User
+	 * 
+	 * */
 	@RequestMapping(value="/addemployee", method = RequestMethod.GET)
 	public String addEmployee(Model model) {
 		model.addAttribute("user", new User());
@@ -49,6 +59,11 @@ public class AdminController {
 		return "admin/addemployee";
 	}
 	
+	/*
+	 * 
+	 * Traitement des données du formulaire d'ajout d'un employée
+	 * 
+	 * */
 	@RequestMapping(value="/addemployee", method = RequestMethod.POST)
 	public String formAddEmployee(@Valid @ModelAttribute User user, BindingResult bindingResult, Model model) {
 		
@@ -70,6 +85,11 @@ public class AdminController {
 		return "redirect:/admin/listemployees";
 	}
 	
+	/*
+	 * 
+	 * Initialise le formulaire d'édition d'un employée
+	 * 
+	 * */
 	@RequestMapping(value="/editemployee", method = RequestMethod.GET)
 	public String editEmployee(@RequestParam("id") Long id, Model model) {
 		User user = userService.findById(id);
@@ -79,6 +99,11 @@ public class AdminController {
 		return "admin/editemployee";
 	}
 	
+	/*
+	 * 
+	 * Contrôle du formulaire d'édition d'un employé, on regarde également que le login renseigné est unique
+	 * 
+	 * */
 	@RequestMapping(value="/editemployee", method = RequestMethod.POST)
 	public String formEditEmployee(@Valid @ModelAttribute User user, BindingResult bindingResult, @RequestParam(value="currentlogin") String currentLogin, Model model) {
 		
@@ -104,6 +129,11 @@ public class AdminController {
 		return "redirect:/admin/listemployees";
 	}
 	
+	/*
+	 * 
+	 * Permet de changer l'état du compte d'un employée (Activation ou désactivation)
+	 * 
+	 * */
 	@RequestMapping(value="/accountstate", method = RequestMethod.GET)
 	public String changeAccountState(@RequestParam("id") Long id, Model model) {
 		User user = userService.findById(id);
@@ -112,6 +142,11 @@ public class AdminController {
 		return "redirect:/admin/listemployees";
 	}
 	
+	/*
+	 * 
+	 * Permet de supprimer un employée
+	 * 
+	 * */
 	@RequestMapping(value = "/deleteemployee/{id}", method = RequestMethod.GET)
 	public String deleteProduct(@PathVariable("id") Long id) {
 		userService.delete(id);

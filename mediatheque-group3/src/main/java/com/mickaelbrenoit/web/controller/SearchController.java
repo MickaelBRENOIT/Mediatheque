@@ -29,8 +29,11 @@ public class SearchController {
 	@Autowired
 	private CategoryService categoryService;
 	
-	List<Item> items = new ArrayList<>();
-	
+	/*
+	 * 
+	 * Permet de lister tous les produits (le fait de les afficher seulement s'ils sont actifs est fait avec thymeleaf)
+	 * 
+	 * */
 	@RequestMapping(method = RequestMethod.GET)
 	public String listAllItems(Model model) {
 		model.addAttribute("items", itemService.findAll());
@@ -38,6 +41,11 @@ public class SearchController {
 		return "search/listofitems";
 	}
 	
+	/*
+	 * 
+	 * Permet de récupérer tous les produits appartenant à la catégorie demandée par l'utilisateur
+	 * 
+	 * */
 	@RequestMapping(value = "/itemsbycategory", method = RequestMethod.GET)
 	public String searchItemsByCategory(@RequestParam(value="select-category", required=true) String searchName, @RequestParam(value="userId", required=false, defaultValue="") String userId, Model model) {
 //		model.addAttribute("categories", categoryService.findAll());
