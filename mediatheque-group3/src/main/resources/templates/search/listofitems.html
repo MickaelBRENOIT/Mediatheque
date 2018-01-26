@@ -33,92 +33,101 @@
 			</div>
 		</form>
 
-		<div class="row">
+		<div class="row justify-content-center">
+		
+			<ul id="easyPaginate" class="w-100">
 
-			<div class="col-lg-4 col-md-12" th:each="item : ${items}" th:if="${session.role} != 'EMP' AND ${item.active} == true">
-				<div class="card text-center mb-4">
-					<div class="card-header stylish-color-dark white-text"
-						th:text="${item.category.nameCategory} + ' - ' + ${item.typeItem.nameItem}"></div>
-					<div class="card-body">
-						<h4 class="card-title" th:text="${item.title}"></h4>
-						<p class="card-text text-justify" th:text="${item.summary}"></p>
-						<p th:if="${item.numberPages} != 0"
-							class="card-text mb-0 text-justify"
-							th:text="#{number_pages} + ' : ' + ${item.numberPages}"></p>
-						<p th:if="${item.duration} != 0"
-							class="card-text mb-0 text-justify"
-							th:text="#{duration} + ' : ' + ${item.duration}"></p>
-						<p class="card-text text-justify"
-							th:text="#{remaining_quantity} + ' : ' + ${item.quantity}"></p>
-						<!-- 						<a -->
-						<!-- 							th:if="${session.login} == null" class="btn btn-default btn-sm" -->
-						<!-- 							th:text="#{signin_title}" th:href="@{/signin}"></a> -->
-					</div>
-					<div class="card-footer text-muted stylish-color-dark white-text">
-						<p class="mb-0" th:text="${item.releaseDate}"></p>
+			<li th:each="item : ${items}" th:if="${session.role} != 'EMP' AND ${item.active} == true">
+				<div class="col-md-6 offset-md-3">
+					<div class="card text-center mb-4">
+						<div class="card-header stylish-color-dark white-text"
+							th:text="${item.category.nameCategory} + ' - ' + ${item.typeItem.nameItem}"></div>
+						<div class="card-body">
+							<h4 class="card-title" th:text="${item.title}"></h4>
+							<p class="card-text text-justify" th:text="${item.summary}"></p>
+							<p th:if="${item.numberPages} != 0"
+								class="card-text mb-0 text-justify"
+								th:text="#{number_pages} + ' : ' + ${item.numberPages}"></p>
+							<p th:if="${item.duration} != 0"
+								class="card-text mb-0 text-justify"
+								th:text="#{duration} + ' : ' + ${item.duration}"></p>
+							<p class="card-text text-justify"
+								th:text="#{remaining_quantity} + ' : ' + ${item.quantity}"></p>
+							<!-- 						<a -->
+							<!-- 							th:if="${session.login} == null" class="btn btn-default btn-sm" -->
+							<!-- 							th:text="#{signin_title}" th:href="@{/signin}"></a> -->
+						</div>
+						<div class="card-footer text-muted stylish-color-dark white-text">
+							<p class="mb-0" th:text="${item.releaseDate}"></p>
+						</div>
 					</div>
 				</div>
-			</div>
+			</li>
 
-			<div class="col-lg-4 col-md-12" th:each="item : ${items}" th:if="${session.role} == 'EMP' AND ${userId} != null AND ${item.active} == true">
-				<div class="card text-center mb-4">
-					<div class="card-header stylish-color-dark white-text"
-						th:text="${item.category.nameCategory} + ' - ' + ${item.typeItem.nameItem}"></div>
-					<div class="card-body">
-						<h4 class="card-title" th:text="${item.title}"></h4>
-						<p class="card-text text-justify" th:text="${item.summary}"></p>
-						<p th:if="${item.numberPages} != 0"
-							class="card-text mb-0 text-justify"
-							th:text="#{number_pages} + ' : ' + ${item.numberPages}"></p>
-						<p th:if="${item.duration} != 0"
-							class="card-text mb-0 text-justify"
-							th:text="#{duration} + ' : ' + ${item.duration}"></p>
-						<p class="card-text text-justify"
-							th:text="#{remaining_quantity} + ' : ' + ${item.quantity}"></p>
-						<a
-							th:if="${item.quantity} != 0"
-							class="btn btn-default btn-sm" th:text="#{loanbutton}"
-							th:href="@{/emp/addloanuser(idUser=${userId}, idItem=${item.idItem})}"></a>
-						<a
-							th:if="${item.quantity} == 0"
-							class="btn btn-danger btn-sm" th:text="#{loanbuttoncancel}"></a>
-					</div>
-					<div class="card-footer text-muted stylish-color-dark white-text">
-						<p class="mb-0" th:text="${item.releaseDate}"></p>
-					</div>
-				</div>
-			</div>
-			
-			<div class="col-lg-4 col-md-12" th:each="item : ${items}" th:if="${session.role} == 'EMP' AND ${userId} == null">
-				<div class="card text-center mb-4">
-					<div class="card-header stylish-color-dark white-text"
-						th:text="${item.category.nameCategory} + ' - ' + ${item.typeItem.nameItem}"></div>
-					<div class="card-body">
-						<h4 class="card-title" th:text="${item.title}"></h4>
-						<p class="card-text text-justify" th:text="${item.summary}"></p>
-						<p th:if="${item.numberPages} != 0"
-							class="card-text mb-0 text-justify"
-							th:text="#{number_pages} + ' : ' + ${item.numberPages}"></p>
-						<p th:if="${item.duration} != 0"
-							class="card-text mb-0 text-justify"
-							th:text="#{duration} + ' : ' + ${item.duration}"></p>
-						<p class="card-text text-justify"
-							th:text="#{remaining_quantity} + ' : ' + ${item.quantity}"></p>
-						<a
-							th:if="${item.active} == true"
-							class="btn btn-danger btn-sm" th:text="#{deactivate}"
-							th:href="@{/emp/itemstate(idItem=${item.idItem})}"></a>
-						<a
-							th:if="${item.active} != true"
-							class="btn btn-success btn-sm" th:text="#{activate}"
-							th:href="@{/emp/itemstate(idItem=${item.idItem})}"></a>
-					</div>
-					<div class="card-footer text-muted stylish-color-dark white-text">
-						<p class="mb-0" th:text="${item.releaseDate}"></p>
+			<li th:each="item : ${items}" th:if="${session.role} == 'EMP' AND ${userId} != null AND ${item.active} == true">
+				<div class="col-md-4">
+					<div class="col-md-6 offset-md-3">
+						<div class="card-header stylish-color-dark white-text"
+							th:text="${item.category.nameCategory} + ' - ' + ${item.typeItem.nameItem}"></div>
+						<div class="card-body">
+							<h4 class="card-title" th:text="${item.title}"></h4>
+							<p class="card-text text-justify" th:text="${item.summary}"></p>
+							<p th:if="${item.numberPages} != 0"
+								class="card-text mb-0 text-justify"
+								th:text="#{number_pages} + ' : ' + ${item.numberPages}"></p>
+							<p th:if="${item.duration} != 0"
+								class="card-text mb-0 text-justify"
+								th:text="#{duration} + ' : ' + ${item.duration}"></p>
+							<p class="card-text text-justify"
+								th:text="#{remaining_quantity} + ' : ' + ${item.quantity}"></p>
+							<a
+								th:if="${item.quantity} != 0"
+								class="btn btn-default btn-sm" th:text="#{loanbutton}"
+								th:href="@{/emp/addloanuser(idUser=${userId}, idItem=${item.idItem})}"></a>
+							<a
+								th:if="${item.quantity} == 0"
+								class="btn btn-danger btn-sm" th:text="#{loanbuttoncancel}"></a>
+						</div>
+						<div class="card-footer text-muted stylish-color-dark white-text">
+							<p class="mb-0" th:text="${item.releaseDate}"></p>
+						</div>
 					</div>
 				</div>
-			</div>
+			</li>
 			
+			<li th:each="item : ${items}" th:if="${session.role} == 'EMP' AND ${userId} == null">
+				<div class="col-md-6 offset-md-3">
+					<div class="card text-center mb-4">
+						<div class="card-header stylish-color-dark white-text"
+							th:text="${item.category.nameCategory} + ' - ' + ${item.typeItem.nameItem}"></div>
+						<div class="card-body">
+							<h4 class="card-title" th:text="${item.title}"></h4>
+							<p class="card-text text-justify" th:text="${item.summary}"></p>
+							<p th:if="${item.numberPages} != 0"
+								class="card-text mb-0 text-justify"
+								th:text="#{number_pages} + ' : ' + ${item.numberPages}"></p>
+							<p th:if="${item.duration} != 0"
+								class="card-text mb-0 text-justify"
+								th:text="#{duration} + ' : ' + ${item.duration}"></p>
+							<p class="card-text text-justify"
+								th:text="#{remaining_quantity} + ' : ' + ${item.quantity}"></p>
+							<a
+								th:if="${item.active} == true"
+								class="btn btn-danger btn-sm" th:text="#{deactivate}"
+								th:href="@{/emp/itemstate(idItem=${item.idItem})}"></a>
+							<a
+								th:if="${item.active} != true"
+								class="btn btn-success btn-sm" th:text="#{activate}"
+								th:href="@{/emp/itemstate(idItem=${item.idItem})}"></a>
+						</div>
+						<div class="card-footer text-muted stylish-color-dark white-text">
+							<p class="mb-0" th:text="${item.releaseDate}"></p>
+						</div>
+					</div>
+				</div>
+			</li>
+			
+			</ul>
 		</div>
 
 	</div>

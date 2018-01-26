@@ -75,3 +75,17 @@ div.dataTables_wrapper div.dataTables_info {
 select {
 	margin-top: 0px;
 }
+
+#easyPaginate {
+	padding: 0 !important;
+  	margin: 0 !important;
+  	list-style-type: none;
+}
+
+.easyPaginateNav a {
+	padding:5px;
+}
+
+.easyPaginateNav a.current {
+	font-weight:bold;text-decoration:underline;
+}

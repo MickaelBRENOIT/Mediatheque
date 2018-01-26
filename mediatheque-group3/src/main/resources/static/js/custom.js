@@ -6,6 +6,12 @@ $(document).ready(function(){
 //    $('.mdb-select').material_select();
     $('select').css({'margin-top':'0px'});
     
+    $('#easyPaginate').easyPaginate({
+        paginateElement: 'li',
+        elementsPerPage: 6,
+        effect: 'slide'
+    });
+    
 //    $('#input-search').autocomplete({
 //    	serviceUrl: '@{/search/getTags}',
 //    	paramName: "tagName", // ?tagName='user input'
