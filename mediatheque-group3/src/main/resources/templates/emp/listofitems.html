@@ -58,8 +58,10 @@
 		</div>
 	</div>
 	
-	<div th:if="${session.role} != 'EMP' OR ${session.role} == null">
-		<div th:replace="error/error403"></div>
+	<div th:if="${session.role} != 'EMP' OR ${session.role} == null" id="bg-home">
+		<div>
+			<div th:replace="error/error403"></div>
+		</div>
 	</div>
 
 	<div th:replace="fragments/footer"></div>

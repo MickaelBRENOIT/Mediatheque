@@ -11,8 +11,8 @@
 
 	<div th:replace="fragments/header"></div>
 
-	<div id="bg-home" th:if="${session.role} == 'EMP'">
-		<div class="container h-100">
+	<div id="bg-home">
+		<div class="container h-100" th:if="${session.role} == 'EMP'">
 		    <div class="row h-100 justify-content-center align-items-center">
             	<!-- Form register -->
 				<form th:action="@{/emp/edituser}" th:object="${user}" method="post">
@@ -74,12 +74,12 @@
 				<!-- Form register -->
 		    </div>
 		</div>
+		
+		<div th:if="${session.role} != 'EMP' OR ${session.role} == null">
+			<div th:replace="error/error403"></div>
+		</div>
+		
 	</div>
-	
-	<div th:if="${session.role} != 'EMP' OR ${session.role} == null">
-		<div th:replace="error/error403"></div>
-	</div>		
-
 	<div th:replace="fragments/footer"></div>
 
 </body>
