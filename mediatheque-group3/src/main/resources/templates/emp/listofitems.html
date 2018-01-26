@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
 	th:with="localeLanguage=${#locale.language}"
-	th:lang="${localeLanguage}" id="html-home">
+	th:lang="${localeLanguage}">
 
 <div th:replace="fragments/head"></div>
 
@@ -19,7 +19,7 @@
 					<a class="btn btn-success btn-sm" th:href="@{/emp/additem}" th:text="#{additem}"></a>
 
 					<table id="listpersons"
-						class="table table-striped table-bordered table-responsive"
+						class="table table-striped table-bordered table-sm"
 						cellspacing="0" width="100%">
 						<thead>
 							<tr>
