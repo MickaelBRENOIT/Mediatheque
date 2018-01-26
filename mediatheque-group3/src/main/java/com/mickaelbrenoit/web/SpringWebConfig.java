@@ -130,10 +130,10 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
 		exceptionResolver.setExcludedExceptions(AccessDeniedException.class);
 		
 		// Map status code with view
-		Properties statusCodes = new Properties();
+		/*Properties statusCodes = new Properties();
 		statusCodes.put("error/custom", "404");
 		statusCodes.put("error/error", "500");
-		exceptionResolver.setStatusCodes(statusCodes);
+		exceptionResolver.setStatusCodes(statusCodes);*/
 
 		exceptionResolver.setDefaultErrorView("error/error");
 		
